@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 public class photoalbum extends Application implements Serializable {
 
-    private Stage window;
+    private static Stage Login;
+    private static Stage Admin;
     private static ArrayList<User> UserList;
 
 
@@ -25,7 +26,7 @@ public class photoalbum extends Application implements Serializable {
     public void start(Stage primaryStage) throws IOException {
 
         LoadUserList();
-        Parent root = FXMLLoader.load(getClass().getResource("View\\LoginView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view\\LoginView.fxml"));
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
