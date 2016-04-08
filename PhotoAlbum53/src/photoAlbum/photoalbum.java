@@ -1,18 +1,65 @@
-package photoAlbum;/**
- * Created by Paulo1 on 4/6/2016.
- */
+package photoAlbum;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import photoAlbum.Model.User;
 
-public class photoalbum extends Application {
+import java.io.*;
+import java.util.ArrayList;
+
+
+public class photoalbum extends Application implements Serializable {
+
+    private Stage window;
+    private static ArrayList<User> UserList;
+
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
+        LoadUserList();
+        Parent root = FXMLLoader.load(getClass().getResource("View\\LoginView.fxml"));
+        primaryStage.setTitle("Login");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+        Save();
+
+
+    }
+
+    public static void Save() throws IOException {
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/UserList.bin"));
+        oos.writeObject(UserList);
+
+    }
+
+
+    public static void LoadUserList(){
+
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(new FileInputStream("data/UserList"));
+
+
+        ArrayList<User> UL;
+        try {
+            UL = (ArrayList<User>) ois.readObject();
+            UserList = UL;
+        } catch (ClassNotFoundException e) {
+            UserList = new ArrayList<User>();
+        }
+
+        } catch (IOException e) {
+            UserList = new ArrayList<User>();
+            return;
+        }
     }
 }

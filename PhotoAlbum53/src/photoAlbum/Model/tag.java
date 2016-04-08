@@ -1,10 +1,12 @@
 package photoAlbum.Model;
 
+import java.io.Serializable;
+
 /**
  * Tag Object
  * Created by Paulo1 on 3/29/2016.
  */
-public class tag {
+public class tag implements Serializable {
     //Tag type
     private String type;
     //Tag value

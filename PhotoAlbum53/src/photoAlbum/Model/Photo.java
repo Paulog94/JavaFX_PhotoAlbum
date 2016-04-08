@@ -1,14 +1,15 @@
 package photoAlbum.Model;
 
-import sun.security.krb5.internal.ccache.Tag;
+import javafx.scene.image.Image;
 
-import java.awt.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Paulo1 on 3/29/2016.
  */
-public class Photo {
+public class Photo implements Serializable {
     Image m;
     private ArrayList<tag> tags;
 

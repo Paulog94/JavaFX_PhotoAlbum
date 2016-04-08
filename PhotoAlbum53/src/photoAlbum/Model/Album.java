@@ -1,5 +1,6 @@
 package photoAlbum.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  *
  * Created by Paulo and Joshua on 3/29/2016.
  */
-public class Album {
+public class Album implements Serializable{
     private String name;
     private ArrayList<Photo> photos;
 

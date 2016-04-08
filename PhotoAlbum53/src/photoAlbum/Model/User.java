@@ -1,11 +1,12 @@
 package photoAlbum.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Paulo1 on 3/29/2016.
  */
-public class User {
+public class User implements Serializable {
 
     private String username;
     private ArrayList<Album> albums;
