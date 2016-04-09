@@ -11,12 +11,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import photoAlbum.Model.Album;
+import photoAlbum.Model.Photo;
 import photoAlbum.Model.User;
 
 public class thumbViewControler {
 	
+	
+	private Album currentAlbum;
+	private Photo currentPhoto;
     private ArrayList<User> savedUsers;
-    @FXML private TextField txtAddUser;
+    @FXML private TextField txtAlbumName;
     @FXML private Button btnAddPhoto;
     @FXML private Button btnREmPhoto;
     @FXML private Button btnCapTag;
@@ -25,10 +31,12 @@ public class thumbViewControler {
     @FXML private Button btnLogOut;
     @FXML private Button btnExit;
     @FXML private Button btnOpen;
+    @FXML private ImageView selectedImage;
     
     @FXML private ListView<User> UserList = new ListView<User>();
 
-    public thumbViewControler(){
+    public thumbViewControler(Album ca){
+    	this.currentAlbum = ca;
     }
 
 
