@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.TilePane;
 import photoAlbum.Model.Album;
 import photoAlbum.Model.Photo;
 import photoAlbum.Model.User;
@@ -21,6 +22,7 @@ public class thumbViewControler {
 	
 	private Album currentAlbum;
 	private Photo currentPhoto;
+	private User currentUser;
     private ArrayList<User> savedUsers;
     @FXML private TextField txtAlbumName;
     @FXML private Button btnAddPhoto;
@@ -32,16 +34,22 @@ public class thumbViewControler {
     @FXML private Button btnExit;
     @FXML private Button btnOpen;
     @FXML private ImageView selectedImage;
+    @FXML private ImageView thumbImage;
+    @FXML private TextField imageName;
     
-    @FXML private ListView<User> UserList = new ListView<User>();
+    @FXML private TilePane tilePane = new TilePane();
+    
+   // @FXML private ListView<User> UserList = new ListView<User>();
 
     public thumbViewControler(Album ca){
     	this.currentAlbum = ca;
     }
-
-
     
-    
+    @FXML
+    private void initialize(){
+       // setUsers();
+    }
+ 
     public void Save(ArrayList<User> users){
 
         ObjectOutputStream oos = null;
@@ -51,8 +59,6 @@ public class thumbViewControler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void LoadUserList(){
@@ -60,8 +66,6 @@ public class thumbViewControler {
         ObjectInputStream ois;
         try {
             ois = new ObjectInputStream(new FileInputStream("data/UserList.bin"));
-
-
             ArrayList<User> UL;
             try {
                 UL = (ArrayList<User>) ois.readObject();
