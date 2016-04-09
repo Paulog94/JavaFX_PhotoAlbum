@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import photoAlbum.Model.User;
+import photoAlbum.view.LoginController;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -26,9 +28,18 @@ public class photoalbum extends Application implements Serializable {
     public void start(Stage primaryStage) throws IOException {
 
         LoadUserList();
-        Parent root = FXMLLoader.load(getClass().getResource("view\\AdminView.fxml"));
-        primaryStage.setTitle("Admin");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Login");
+
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("view\\LoginView.fxml"));
+
+        Pane myPane = (Pane)myLoader.load();
+
+        LoginController controller = (LoginController) myLoader.getController();
+
+        controller.setPrevStage(primaryStage);
+
+        Scene myScene = new Scene(myPane);
+        primaryStage.setScene(myScene);
         primaryStage.show();
         Save();
 

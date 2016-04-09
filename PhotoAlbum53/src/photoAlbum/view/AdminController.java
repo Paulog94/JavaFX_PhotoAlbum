@@ -78,7 +78,7 @@ public class AdminController {
     }
 
 
-    @FXML public void DeleteUser(ActionEvent actionEvent){
+    public void DeleteUser(ActionEvent actionEvent){
 
         savedUsers.remove(UserList.getSelectionModel().getSelectedItem());
         Save(savedUsers);
@@ -119,10 +119,5 @@ public class AdminController {
             return;
         }
     }
-
-    public void SelectUser(Event event) {
-
-    }
-
 
 }

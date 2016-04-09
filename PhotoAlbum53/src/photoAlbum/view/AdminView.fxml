@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="Admin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photoAlbum.view.AdminController">
    <children>
-      <ListView fx:id="UserList" layoutX="31.0" layoutY="32.0" onMouseClicked="#SelectUser" prefHeight="300.0" prefWidth="375.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="190.0" />
+      <ListView fx:id="UserList" layoutX="31.0" layoutY="32.0" prefHeight="300.0" prefWidth="375.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="190.0" />
       <TextField fx:id="txtAddUser" alignment="CENTER" layoutX="422.0" layoutY="89.0" promptText="add new user" />
       <Button fx:id="btnAddUser" layoutX="465.0" layoutY="114.0" mnemonicParsing="false" onAction="#AddUser" text="add user" />
       <Button fx:id="btnDeleteUser" layoutX="459.0" layoutY="224.0" mnemonicParsing="false" onAction="#DeleteUser" text="delete User" />
