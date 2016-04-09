@@ -24,8 +24,11 @@ public class LoginController {
         if(txtUname.getText().equals("Admin")){
             lblLogin.setText("You are The Admin");
         }
-        else{
+        else if(!txtUname.getText().equals("")){
             lblLogin.setText("Welcome "+txtUname.getText());
+        }
+        else{
+            lblLogin.setText("Try again");
         }
 
     }

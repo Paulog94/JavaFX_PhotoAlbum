@@ -15,7 +15,7 @@ public class photoalbum extends Application implements Serializable {
 
     private static Stage Login;
     private static Stage Admin;
-    private static ArrayList<User> UserList;
+    private static ArrayList<User> UserList = new ArrayList<User>();
 
 
     public static void main(String[] args) {
@@ -26,8 +26,8 @@ public class photoalbum extends Application implements Serializable {
     public void start(Stage primaryStage) throws IOException {
 
         LoadUserList();
-        Parent root = FXMLLoader.load(getClass().getResource("view\\LoginView.fxml"));
-        primaryStage.setTitle("Login");
+        Parent root = FXMLLoader.load(getClass().getResource("view\\AdminView.fxml"));
+        primaryStage.setTitle("Admin");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         Save();
@@ -35,30 +35,36 @@ public class photoalbum extends Application implements Serializable {
 
     }
 
-    public static void Save() throws IOException {
+    public static void Save() {
 
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/UserList.bin"));
-        oos.writeObject(UserList);
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream("data/UserList.bin"));
+            oos.writeObject(UserList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
 
     public static void LoadUserList(){
 
-        ObjectInputStream ois = null;
+        ObjectInputStream ois;
         try {
-            ois = new ObjectInputStream(new FileInputStream("data/UserList"));
-
-
-        ArrayList<User> UL;
+            ois = new ObjectInputStream(new FileInputStream("data/UserList.bin"));
+            ArrayList<User> UL;
         try {
             UL = (ArrayList<User>) ois.readObject();
             UserList = UL;
         } catch (ClassNotFoundException e) {
+            //System.out.println("Did not work 1");
             UserList = new ArrayList<User>();
         }
 
         } catch (IOException e) {
+            //System.out.println("Did not work 2");
             UserList = new ArrayList<User>();
             return;
         }
