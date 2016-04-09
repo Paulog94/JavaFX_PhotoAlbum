@@ -20,7 +20,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="409.0" prefWidth="798.0">
                <children>
                   <TilePane layoutX="69.0" layoutY="36.0" prefHeight="381.0" prefWidth="798.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="-69.0" AnchorPane.topAnchor="36.0" />
-                  <TextField layoutX="151.0" prefHeight="36.0" prefWidth="496.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="txtAlbumName" layoutX="151.0" prefHeight="36.0" prefWidth="496.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
           <AnchorPane prefHeight="141.0" prefWidth="798.0">
@@ -88,7 +88,7 @@
                                     <Insets left="4.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button fx:id="btnExit" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Exit" GridPane.columnIndex="3">
+                              <Button fx:id="btnExit" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Exit Album" GridPane.columnIndex="3">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
