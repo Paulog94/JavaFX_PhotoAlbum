@@ -43,7 +43,6 @@ public class photoalbum extends Application implements Serializable {
         primaryStage.show();
         Save();
 
-
     }
 
     public static void Save() {
@@ -55,8 +54,6 @@ public class photoalbum extends Application implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 

@@ -35,4 +35,12 @@ public class tag implements Serializable {
 
         return false;
     }
+
+    public boolean equals(tag t){
+
+        if(t.getType().equals(type) && t.getValue().equals(value)){
+            return true;
+        }
+        return false;
+    }
 }

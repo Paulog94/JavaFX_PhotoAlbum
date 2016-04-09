@@ -10,11 +10,13 @@ import java.util.ArrayList;
  * Created by Paulo1 on 3/29/2016.
  */
 public class Photo implements Serializable {
-    Image m;
+    private Image m;
+    private String caption;
     private ArrayList<tag> tags;
 
-    public Photo(Image m){
+    public Photo(Image m, String caption){
         this.m = m;
+        this.caption = caption;
         tags = new ArrayList<tag>();
     }
 
@@ -24,5 +26,19 @@ public class Photo implements Serializable {
     public void deleteTag(tag t){
         tags.remove(t);
     }
+    public void editCaption(String caption){this.caption = caption;}
+    public String getCaption(){return caption;}
+    public Image getImage(){return m;}
+
+    public boolean hasTag(tag s){
+
+        for(tag t: tags){
+            if(t.equals(s)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
