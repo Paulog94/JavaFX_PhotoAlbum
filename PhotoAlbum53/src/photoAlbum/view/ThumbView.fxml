@@ -29,7 +29,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="123.0" prefWidth="378.0">
                            <children>
-                              <ImageView fitHeight="101.0" fitWidth="131.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="10.0" />
+                              <ImageView fx:id="selectedImage" fitHeight="101.0" fitWidth="131.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="10.0" />
                               <ListView layoutX="184.0" prefHeight="120.0" prefWidth="227.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
