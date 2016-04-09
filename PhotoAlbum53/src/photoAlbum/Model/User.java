@@ -16,19 +16,21 @@ public class User implements Serializable {
         albums = new ArrayList<Album>();
     }
 
-    public String getName(){
+    public String getName() {
         return username;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         username = name;
     }
 
     /**
      * Adds a new Album for the User
+     *
      * @param name
      */
-    public void addAlbum(String name){
-        if(containsAlbum(name)){
+    public void addAlbum(String name) {
+        if (containsAlbum(name)) {
             return;
         }
         albums.add(new Album(name));
@@ -36,27 +38,32 @@ public class User implements Serializable {
 
     /**
      * Retrieves album with a specific name
+     *
      * @param name Name of album to retrieve
      * @return Albume with the specific name
      */
-    public Album getAlbum(String name){
-        for(Album a: albums){
-            if(name.equals(a.getName()))
+    public Album getAlbum(String name) {
+        for (Album a : albums) {
+            if (name.equals(a.getName()))
                 return a;
         }
         return null;
     }
 
+    public ArrayList<Album> getAlbumList() {return albums;}
+
     /**
      * Checks if a user's Albums contains a specific album
+     *
      * @param name Album name
      * @return true if there is an album with the same name
      */
-    public boolean containsAlbum(String name){
-        for(Album a: albums){
+    public boolean containsAlbum(String name) {
+        for (Album a : albums) {
             if (name.equals(a.getName()))
                 return true;
         }
         return false;
+
     }
 }

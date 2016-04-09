@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -7,26 +11,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="773.0" prefWidth="1060.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
-	<children>
-		<GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="669.0" minWidth="10.0" prefWidth="528.0" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="534.0" minWidth="10.0" prefWidth="532.0" />
-			</columnConstraints>
-			<rowConstraints>
-				<RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="627.0" minHeight="10.0" prefHeight="618.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="393.0" minHeight="0.0" prefHeight="103.0" vgrow="SOMETIMES" />
-			</rowConstraints>
-					<fx:include fx:id="AlbumActions" source="AlbumActions.fxml" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-		<fx:include fx:id="AlbumView" alignment="CENTER_LEFT" source="AlbumView.fxml" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-         <TextField alignment="CENTER" editable="false" prefHeight="50.0" prefWidth="1060.0" text="User Name's Albums" GridPane.columnSpan="2">
-            <font>
-               <Font name="System Bold" size="18.0" />
-            </font>
-         </TextField>
-		</GridPane>
-
-	</children>
-</fx:root>
+<AnchorPane prefHeight="419.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photoAlbum.view.albumPageController">
+   <children>
+      <ListView fx:id="AlbumList" layoutX="21.0" layoutY="59.0" prefHeight="302.0" prefWidth="278.0" />
+      <Button fx:id="btnaddAlbum" layoutX="390.0" layoutY="131.0" mnemonicParsing="false" onAction="#addAlbum" text="Add" />
+      <TextField fx:id="txtSearch" layoutX="21.0" layoutY="14.0" prefHeight="25.0" prefWidth="278.0" />
+      <Button fx:id="btnSearch" layoutX="299.0" layoutY="14.0" mnemonicParsing="false" onAction="#SearchPhoto" text="Search" />
+      <TextField fx:id="txtAddAlbum" alignment="CENTER" layoutX="334.0" layoutY="106.0" promptText="add new album" />
+      <Button fx:id="btnDelete" layoutX="128.0" layoutY="374.0" mnemonicParsing="false" onAction="#deleteAlbum" prefHeight="36.0" prefWidth="65.0" text="Delete" />
+      <TextField fx:id="txtEdit" layoutX="335.0" layoutY="227.0" />
+      <Button fx:id="btnEdit" layoutX="391.0" layoutY="252.0" mnemonicParsing="false" onAction="#editAlbum" text="Edit" />
+      <Button fx:id="btnViewAlbum" layoutX="370.0" layoutY="336.0" mnemonicParsing="false" onAction="#ViewAlbum" text="ViewAlbum" />
+   </children>
+</AnchorPane>

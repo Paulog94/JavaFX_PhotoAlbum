@@ -48,7 +48,8 @@ public class LoginController {
             LaunchAdminStage();
         }
         else if(validUser(txtUname.getText())){
-            lblLogin.setText("Welcome "+txtUname.getText());
+            //lblLogin.setText("Welcome "+txtUname.getText());
+            LaunchUserStage();
         }
         else{
             lblLogin.setText("Try again");
@@ -77,7 +78,25 @@ public class LoginController {
     }
 
     //Here is where we launch The User fxml
-    public void LaunchUserStage(){}
+    public void LaunchUserStage(){
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("Welcome "+txtUname.getText());
+            Pane myPane;
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AlbumPage.fxml"));
+            myPane = (Pane) myLoader.load();
+            albumPageController controller = (albumPageController) myLoader.getController();
+            controller.setUsername(txtUname.getText());
+
+            Scene scene = new Scene(myPane);
+            stage.setScene(scene);
+            prevStage.close();
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Loads Users from the Binary file
     public void LoadUserList(){

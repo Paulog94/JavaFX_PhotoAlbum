@@ -14,9 +14,8 @@ import javafx.util.Callback;
 import photoAlbum.Model.User;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+
 
 /**
  * Created by Paulo1 on 4/7/2016.
