@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 import photoAlbum.Model.Album;
 import photoAlbum.Model.Photo;
@@ -83,18 +80,21 @@ public class albumPageController {
 
     public void addAlbum(ActionEvent actionEvent) {
 
-        //System.out.println("Button Was clicked");
-
-        //btnAddUser.getOnMouseClicked();
-        if (!txtAddAlbum.equals("")) {
-            //System.out.println(txtAddUser.getText());
-            //System.out.println("Empty UserList");
+        if (isValidAlbum(txtAddAlbum.getText())) {
             savedUsers.get(index).addAlbum(txtAddAlbum.getText());
-
             Save(savedUsers);
             setAlbums();
+            txtAddAlbum.clear();
         }
-        txtAddAlbum.clear();
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot add Album");
+            alert.setContentText("Album cannot Already exist and it cannot be empty");
+            alert.showAndWait();
+        }
+
+
 
     }
     
@@ -142,10 +142,19 @@ public class albumPageController {
     }
 
     public void editAlbum(ActionEvent actionEvent) {
-        AlbumList.getSelectionModel().getSelectedItem().setName(txtEdit.getText());
-        Save(savedUsers);
-        setAlbums();
-        txtEdit.clear();
+        if(!AlbumList.getSelectionModel().isEmpty() && isValidAlbum(txtEdit.getText())) {
+            AlbumList.getSelectionModel().getSelectedItem().setName(txtEdit.getText());
+            Save(savedUsers);
+            setAlbums();
+            txtEdit.clear();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot Edit Album");
+            alert.setContentText("Album cannot Already exist and it cannot be empty");
+            alert.showAndWait();
+        }
     }
 
     public void ViewAlbum(ActionEvent actionEvent) {
@@ -153,5 +162,17 @@ public class albumPageController {
 
     public void SelectedAlbum(Event event) {
         txtEdit.setText(AlbumList.getSelectionModel().getSelectedItem().getName());
+    }
+
+    public boolean isValidAlbum(String album){
+
+        for(Album a : savedUsers.get(index).getAlbumList()){
+            if(a.getName().equals(album))
+                return false;
+        }
+        if(album.equals("") || album.isEmpty())
+            return false;
+
+        return true;
     }
 }

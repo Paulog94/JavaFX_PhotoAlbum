@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 import photoAlbum.Model.User;
 
@@ -60,18 +57,20 @@ public class AdminController {
 
     public void AddUser(ActionEvent actionEvent){
 
-        //System.out.println("Button Was clicked");
-
-        //btnAddUser.getOnMouseClicked();
-        if(!txtAddUser.equals("")) {
-            //System.out.println(txtAddUser.getText());
+        if(isValidUser(txtAddUser.getText())) {
             User newUser = new User(txtAddUser.getText());
-
-            //System.out.println("Empty UserList");
             savedUsers.add(newUser);
 
             Save(savedUsers);
             setUsers();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot Add User");
+            alert.setContentText("Username cannot Already exist and it cannot be empty");
+            alert.showAndWait();
         }
 
     }
@@ -117,6 +116,18 @@ public class AdminController {
             savedUsers = new ArrayList<User>();
             return;
         }
+    }
+
+    public boolean isValidUser(String username){
+
+        for(User u : savedUsers){
+            if(u.getName().equals(username))
+                return false;
+        }
+        if(username.equals("") || username.isEmpty())
+            return false;
+
+        return true;
     }
 
 }
