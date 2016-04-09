@@ -3,6 +3,7 @@ package photoAlbum.view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
@@ -93,6 +94,7 @@ public class albumPageController {
             Save(savedUsers);
             setAlbums();
         }
+        txtAddAlbum.clear();
 
     }
     
@@ -140,8 +142,16 @@ public class albumPageController {
     }
 
     public void editAlbum(ActionEvent actionEvent) {
+        AlbumList.getSelectionModel().getSelectedItem().setName(txtEdit.getText());
+        Save(savedUsers);
+        setAlbums();
+        txtEdit.clear();
     }
 
     public void ViewAlbum(ActionEvent actionEvent) {
+    }
+
+    public void SelectedAlbum(Event event) {
+        txtEdit.setText(AlbumList.getSelectionModel().getSelectedItem().getName());
     }
 }
