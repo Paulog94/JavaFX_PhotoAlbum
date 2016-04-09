@@ -13,25 +13,24 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photoAlbum.view.thumbViewControler">
    <children>
-      <SplitPane dividerPositions="0.6755852842809364" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.7909698996655519" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="453.0" prefWidth="798.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="409.0" prefWidth="798.0">
                <children>
-                  <TilePane layoutY="39.0" prefHeight="424.0" prefWidth="798.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0" />
+                  <TilePane layoutX="69.0" layoutY="36.0" prefHeight="381.0" prefWidth="798.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="-69.0" AnchorPane.topAnchor="36.0" />
                   <TextField layoutX="151.0" prefHeight="36.0" prefWidth="496.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-          <AnchorPane prefHeight="293.0" prefWidth="798.0">
+          <AnchorPane prefHeight="141.0" prefWidth="798.0">
                <children>
-                  <SplitPane dividerPositions="0.4937185929648241" layoutY="66.0" prefHeight="125.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+                  <SplitPane dividerPositions="0.4937185929648241" prefHeight="172.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="123.0" prefWidth="378.0">
                            <children>
-                              <ImageView fitHeight="101.0" fitWidth="155.0" layoutX="9.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="12.0" />
-                              <ListView layoutX="184.0" prefHeight="123.0" prefWidth="162.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
+                              <ImageView fitHeight="101.0" fitWidth="131.0" layoutX="22.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="10.0" />
+                              <ListView layoutX="184.0" prefHeight="120.0" prefWidth="227.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                         <GridPane alignment="CENTER" hgap="5.0" prefHeight="123.0" prefWidth="410.0" vgap="5.0" SplitPane.resizableWithParent="false">
@@ -46,7 +45,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Add Photo">
+                              <Button fx:id="btnAddPhoto" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Add Photo">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -54,7 +53,7 @@
                                     <Insets left="4.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Remove Photo" GridPane.rowIndex="1">
+                              <Button fx:id="btnREmPhoto" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Remove Photo" GridPane.rowIndex="1">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -65,7 +64,7 @@
                                     <Font size="10.0" />
                                  </font>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="84.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Caption/Tag" GridPane.columnIndex="1">
+                              <Button fx:id="btnCapTag" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="84.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Caption/Tag" GridPane.columnIndex="1">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -73,7 +72,7 @@
                                     <Insets left="4.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="84.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Button fx:id="btnSearch" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="84.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -81,7 +80,7 @@
                                     <Insets left="4.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Open Photo" GridPane.columnIndex="2">
+                              <Button fx:id="btnOpen" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Open Photo" GridPane.columnIndex="2">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -89,7 +88,7 @@
                                     <Insets left="4.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Exit" GridPane.columnIndex="3">
+                              <Button fx:id="btnExit" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Exit" GridPane.columnIndex="3">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -97,7 +96,7 @@
                                     <Insets left="4.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Move Photo" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="btnMovePhoto" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Move Photo" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -105,7 +104,7 @@
                                     <Insets left="4.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Log Out" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <Button fx:id="btnLogOut" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Log Out" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
