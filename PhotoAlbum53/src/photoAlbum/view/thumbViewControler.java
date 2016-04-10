@@ -7,12 +7,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
+import javafx.util.Callback;
 import photoAlbum.Model.Album;
 import photoAlbum.Model.Photo;
 import photoAlbum.Model.User;
@@ -23,7 +27,10 @@ public class thumbViewControler {
 	private Album currentAlbum;
 	private Photo currentPhoto;
 	private User currentUser;
+	private String userName;
     private ArrayList<User> savedUsers;
+    private int userIndex;
+    private int albumIndex;
     @FXML private TextField txtAlbumName;
     @FXML private Button btnAddPhoto;
     @FXML private Button btnREmPhoto;
@@ -41,17 +48,35 @@ public class thumbViewControler {
     
    // @FXML private ListView<User> UserList = new ListView<User>();
 
-    public thumbViewControler(Album ca){
+    public thumbViewControler(Album ca, String un){
     	this.currentAlbum = ca;
+    	this.userName = un;
     }
     
     @FXML
     private void initialize(){
-       // setUsers();
+       setPhotos();
     }
+    
+    public void setPhotos() {
+        LoadUserList();
+        setUsername(userName);
+        
+        
+        ObservableList<Photo> ObsPhotoList = FXCollections.observableList(currentAlbum.getPhotoList());
+
+    }
+    public void setUsername(String username){
+        for(User u : savedUsers){
+            if(u.getName().equals(username))
+                userIndex = savedUsers.indexOf(u);
+            	currentUser = u;
+        }
+    }
+
+
  
     public void Save(ArrayList<User> users){
-
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(new FileOutputStream("data/UserList.bin"));
@@ -62,7 +87,6 @@ public class thumbViewControler {
     }
 
     public void LoadUserList(){
-
         ObjectInputStream ois;
         try {
             ois = new ObjectInputStream(new FileInputStream("data/UserList.bin"));
@@ -79,6 +103,5 @@ public class thumbViewControler {
             return;
         }
     }
-
 
 }

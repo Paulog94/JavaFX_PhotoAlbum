@@ -52,4 +52,6 @@ public class Album implements Serializable{
     public boolean containsPhoto(Photo p){
         return photos.contains(p);
     }
+    
+    public ArrayList<Photo> getPhotoList() {return photos;}
 }
