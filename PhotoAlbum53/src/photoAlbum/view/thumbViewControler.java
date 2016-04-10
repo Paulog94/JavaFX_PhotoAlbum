@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -31,6 +33,7 @@ public class thumbViewControler {
     private ArrayList<User> savedUsers;
     private int userIndex;
     private int albumIndex;
+    
     @FXML private TextField txtAlbumName;
     @FXML private Button btnAddPhoto;
     @FXML private Button btnREmPhoto;
@@ -61,11 +64,9 @@ public class thumbViewControler {
     public void setPhotos() {
         LoadUserList();
         setUsername(userName);
-        
-        
         ObservableList<Photo> ObsPhotoList = FXCollections.observableList(currentAlbum.getPhotoList());
-
     }
+    
     public void setUsername(String username){
         for(User u : savedUsers){
             if(u.getName().equals(username))
@@ -73,9 +74,19 @@ public class thumbViewControler {
             	currentUser = u;
         }
     }
+    
+    public void drawTiles(ObservableList<Photo> olp){
+    	if (!olp.isEmpty()){
+    		for(Photo p : olp){
+    			Label title = new Label (p.getCaption());
+    			ImageView imageview = new ImageView(p.getImage());
+    	           TilePane.setAlignment(title, Pos.BOTTOM_RIGHT);
+    	           tilePane.getChildren().addAll(title, imageview);
+    		}
+    	}
+    	
+    }
 
-
- 
     public void Save(ArrayList<User> users){
         ObjectOutputStream oos = null;
         try {
