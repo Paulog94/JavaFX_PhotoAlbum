@@ -11,14 +11,22 @@ import java.util.Calendar;
  * Created by Paulo1 on 3/29/2016.
  */
 public class Photo implements Serializable {
-    private Image m;
+    private String ImageURL;
     private String caption;
     private ArrayList<tag> tags;
     Calendar date;
 
-    public Photo(Image m, String caption){
-        this.m = m;
+    public Photo(String url, String caption){
+        ImageURL = url;
         this.caption = caption;
+        tags = new ArrayList<tag>();
+        date = Calendar.getInstance();
+        date.add(Calendar.DATE,1);
+    }
+
+    public Photo(String url){
+        ImageURL= url;
+        caption = "";
         tags = new ArrayList<tag>();
         date = Calendar.getInstance();
         date.add(Calendar.DATE,1);
@@ -37,7 +45,7 @@ public class Photo implements Serializable {
         date.add(Calendar.DATE,1);
     }
     public String getCaption(){return caption;}
-    public Image getImage(){return m;}
+    public Image getImage(){return new Image(ImageURL);}
 
     public Calendar getDate(){return date;}
 
