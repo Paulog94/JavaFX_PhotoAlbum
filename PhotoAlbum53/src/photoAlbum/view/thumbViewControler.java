@@ -60,9 +60,12 @@ public class thumbViewControler {
     
     public void setPhotos() {
         LoadUserList();
-        setUsername(userName);
-        ObservableList<Photo> obsPhotoList = FXCollections.observableList(currentAlbum.getPhotoList());
-        drawTiles(obsPhotoList);
+        //setUsername(userName);
+        currentAlbum = savedUsers.get(userIndex).getAlbumList().get(albumIndex);
+        if(!currentAlbum.getPhotoList().isEmpty()) {
+            ObservableList<Photo> obsPhotoList = FXCollections.observableList(currentAlbum.getPhotoList());
+            drawTiles(obsPhotoList);
+        }
     }
     
     public void setUsername(String username){
@@ -110,6 +113,11 @@ public class thumbViewControler {
             savedUsers = new ArrayList<User>();
             return;
         }
+    }
+
+    public void setAlbumIndex(int a){
+        albumIndex = a;
+
     }
 
 }

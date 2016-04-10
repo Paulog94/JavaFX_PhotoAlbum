@@ -172,12 +172,14 @@ public class albumPageController {
     public void ViewAlbum(ActionEvent actionEvent) {
     	 try {
              Stage stage = new Stage();
-             stage.setTitle(photoalbum.getCurrentAlbum().getName());
+             stage.setTitle(AlbumList.getSelectionModel().getSelectedItem().getName());
              Pane myPane;
              FXMLLoader myLoader = new FXMLLoader(getClass().getResource("ThumbView.fxml"));
              myPane = (Pane) myLoader.load();
              thumbViewControler controller = (thumbViewControler) myLoader.getController();
-            // controller.setUsername(txtUname.getText());
+             controller.setAlbumIndex(AlbumList.getSelectionModel().getSelectedIndex());
+             controller.setUsername(username);
+
 
              Scene scene = new Scene(myPane);
              stage.setScene(scene);
@@ -206,4 +208,6 @@ public class albumPageController {
 
         return true;
     }
+
+
 }

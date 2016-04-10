@@ -87,6 +87,7 @@ public class LoginController {
             myPane = (Pane) myLoader.load();
             albumPageController controller = (albumPageController) myLoader.getController();
             controller.setUsername(txtUname.getText());
+            controller.setPrevStage(prevStage);
 
             Scene scene = new Scene(myPane);
             stage.setScene(scene);
