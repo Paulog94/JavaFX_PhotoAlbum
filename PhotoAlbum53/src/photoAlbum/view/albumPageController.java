@@ -170,6 +170,9 @@ public class albumPageController {
     }
 
     public void ViewAlbum(ActionEvent actionEvent) {
+        if(AlbumList.getSelectionModel().isEmpty()){
+            return;
+        }
     	 try {
              Stage stage = new Stage();
              stage.setTitle(AlbumList.getSelectionModel().getSelectedItem().getName());
@@ -193,6 +196,9 @@ public class albumPageController {
     
 
     public void SelectedAlbum(Event event) {
+        if(AlbumList.getSelectionModel().isEmpty()){
+            return;
+        }
         txtEdit.setText(AlbumList.getSelectionModel().getSelectedItem().getName());
         photoalbum.setCurrentAlbum(AlbumList.getSelectionModel().getSelectedItem());
     }
@@ -208,6 +214,4 @@ public class albumPageController {
 
         return true;
     }
-
-
 }

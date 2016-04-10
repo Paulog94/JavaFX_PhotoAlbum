@@ -67,8 +67,7 @@ public class thumbViewControler {
         savedUsers.get(userIndex).getAlbumList().get(albumIndex);
         //if(!currentAlbum.getPhotoList().isEmpty()) {
             System.out.println("Photos are here");
-            ObservableList<Photo> obsPhotoList =
-                    FXCollections.observableList(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList());
+            ObservableList<Photo> obsPhotoList = FXCollections.observableList(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList());
             drawTiles(obsPhotoList);
         //}
     }
@@ -87,7 +86,7 @@ public class thumbViewControler {
     		for(Photo p : olp){
                 System.out.println("Loading Photo");
     			Label title = new Label (p.getCaption());
-                Image m = p.getImage();
+                Image m = new Image(p.getURL());
     			ImageView imageview = new ImageView(m);
     	           TilePane.setAlignment(title, Pos.BOTTOM_RIGHT);
     	           tilePane.getChildren().addAll(title, imageview);
@@ -130,8 +129,8 @@ public class thumbViewControler {
     public void AddPhoto(ActionEvent actionEvent) {
 
         System.out.println("Adding new Images");
-        String m = "http://2.bp.blogspot.com/-ZaYiMvE2ID0/T7-Lp-p0oDI/AAAAAAAAAdk/DiWbG2CtBRA/s1600/theexpansescreenshot.png";
-        System.out.println(m.toString());
+        String m = "http://static.lolskill.net/img/skins/1215/veigar_0.jpg";
+        System.out.println(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().size());
         Photo p = new Photo(m);
         savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().add(p);
         Save(savedUsers);
