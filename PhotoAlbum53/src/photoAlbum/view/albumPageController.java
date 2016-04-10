@@ -5,7 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import photoAlbum.Model.Album;
 import photoAlbum.Model.Photo;
@@ -18,6 +22,8 @@ public class albumPageController {
     private ArrayList<User> savedUsers;
     private String username;
     private int index;
+    Stage prevStage;
+    private Album currentAlbum;
 
     @FXML
     private TextField txtSearch;
@@ -156,12 +162,35 @@ public class albumPageController {
             alert.showAndWait();
         }
     }
+    
+    public void setPrevStage(Stage stage){
+        this.prevStage = stage;
+    }
 
     public void ViewAlbum(ActionEvent actionEvent) {
-    }
+    	 try {
+             Stage stage = new Stage();
+             stage.setTitle(currentAlbum.getName());
+             Pane myPane;
+             FXMLLoader myLoader = new FXMLLoader(getClass().getResource("ThumbView.fxml"));
+             myPane = (Pane) myLoader.load();
+             thumbViewControler controller = (thumbViewControler) myLoader.getController();
+            // controller.setUsername(txtUname.getText());
+
+             Scene scene = new Scene(myPane);
+             stage.setScene(scene);
+             prevStage.close();
+
+             stage.show();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+    
 
     public void SelectedAlbum(Event event) {
         txtEdit.setText(AlbumList.getSelectionModel().getSelectedItem().getName());
+        currentAlbum = AlbumList.getSelectionModel().getSelectedItem();
     }
 
     public boolean isValidAlbum(String album){

@@ -64,7 +64,8 @@ public class thumbViewControler {
     public void setPhotos() {
         LoadUserList();
         setUsername(userName);
-        ObservableList<Photo> ObsPhotoList = FXCollections.observableList(currentAlbum.getPhotoList());
+        ObservableList<Photo> obsPhotoList = FXCollections.observableList(currentAlbum.getPhotoList());
+        drawTiles(obsPhotoList);
     }
     
     public void setUsername(String username){
@@ -84,7 +85,6 @@ public class thumbViewControler {
     	           tilePane.getChildren().addAll(title, imageview);
     		}
     	}
-    	
     }
 
     public void Save(ArrayList<User> users){
