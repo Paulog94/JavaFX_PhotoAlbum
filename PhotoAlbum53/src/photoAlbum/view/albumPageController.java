@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import photoAlbum.photoalbum;
 import photoAlbum.Model.Album;
 import photoAlbum.Model.Photo;
 import photoAlbum.Model.User;
@@ -23,7 +24,7 @@ public class albumPageController {
     private String username;
     private int index;
     Stage prevStage;
-    private Album currentAlbum;
+    //private Album currentAlbum;
 
     @FXML
     private TextField txtSearch;
@@ -80,6 +81,7 @@ public class albumPageController {
         for(User u : savedUsers){
             if(u.getName().equals(username))
                 index = savedUsers.indexOf(u);
+            photoalbum.setCurrentUser(u);
         }
         setAlbums();
     }
@@ -170,7 +172,7 @@ public class albumPageController {
     public void ViewAlbum(ActionEvent actionEvent) {
     	 try {
              Stage stage = new Stage();
-             stage.setTitle(currentAlbum.getName());
+             stage.setTitle(photoalbum.getCurrentAlbum().getName());
              Pane myPane;
              FXMLLoader myLoader = new FXMLLoader(getClass().getResource("ThumbView.fxml"));
              myPane = (Pane) myLoader.load();
@@ -190,7 +192,7 @@ public class albumPageController {
 
     public void SelectedAlbum(Event event) {
         txtEdit.setText(AlbumList.getSelectionModel().getSelectedItem().getName());
-        currentAlbum = AlbumList.getSelectionModel().getSelectedItem();
+        photoalbum.setCurrentAlbum(AlbumList.getSelectionModel().getSelectedItem());
     }
 
     public boolean isValidAlbum(String album){

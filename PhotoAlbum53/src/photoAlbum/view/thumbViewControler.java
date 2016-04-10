@@ -48,12 +48,9 @@ public class thumbViewControler {
     @FXML private TextField imageName;
     
     @FXML private TilePane tilePane = new TilePane();
-    
-   // @FXML private ListView<User> UserList = new ListView<User>();
 
-    public thumbViewControler(Album ca, String un){
-    	this.currentAlbum = ca;
-    	this.userName = un;
+    public thumbViewControler(){
+
     }
     
     @FXML

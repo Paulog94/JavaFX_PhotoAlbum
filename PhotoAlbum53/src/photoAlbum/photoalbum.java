@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import photoAlbum.Model.Album;
 import photoAlbum.Model.User;
 import photoAlbum.view.LoginController;
 
@@ -18,6 +19,8 @@ public class photoalbum extends Application implements Serializable {
     private static Stage Login;
     private static Stage Admin;
     private static ArrayList<User> UserList = new ArrayList<User>();
+    private static User currentUser;
+    private static Album currentAlbum;
 
 
     public static void main(String[] args) {
@@ -77,4 +80,32 @@ public class photoalbum extends Application implements Serializable {
             return;
         }
     }
+
+	/**
+	 * @return the currentUser
+	 */
+	public static User getCurrentUser() {
+		return currentUser;
+	}
+
+	/**
+	 * @param currentUser the currentUser to set
+	 */
+	public static void setCurrentUser(User currentUser) {
+		photoalbum.currentUser = currentUser;
+	}
+
+	/**
+	 * @return the currentAlbum
+	 */
+	public static Album getCurrentAlbum() {
+		return currentAlbum;
+	}
+
+	/**
+	 * @param currentAlbum the currentAlbum to set
+	 */
+	public static void setCurrentAlbum(Album currentAlbum) {
+		photoalbum.currentAlbum = currentAlbum;
+	}
 }
