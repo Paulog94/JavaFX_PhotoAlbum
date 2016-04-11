@@ -142,7 +142,7 @@ public class thumbViewControler {
     public void AddPhoto(ActionEvent actionEvent) {
 
         System.out.println("Adding new Images");
-        String m = "http://static.lolskill.net/img/skins/1215/veigar_0.jpg";
+        String m = "https://s-media-cache-ak0.pinimg.com/originals/ed/a2/f4/eda2f478dddfc299b09c54a10baee0a9.gif";
         System.out.println(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().size());
         Photo p = new Photo(m);
         savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().add(p);

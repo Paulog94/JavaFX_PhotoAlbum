@@ -102,15 +102,12 @@
             </Button>
          </children>
       </GridPane>
-      <ScrollPane fx:id="imageGalleryField" hbarPolicy="NEVER" layoutX="21.0" layoutY="61.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="375.0" prefViewportHeight="381.0" prefViewportWidth="798.0" prefWidth="639.0">
+      <ScrollPane fx:id="imageGalleryField" layoutX="18.0" layoutY="60.0" prefHeight="362.0" prefWidth="644.0">
          <content>
-            <TilePane fx:id="tilePane" alignment="CENTER" hgap="15.0" layoutX="69.0" layoutY="36.0" maxHeight="130.0" maxWidth="130.0" minHeight="130.0" minWidth="130.0" orientation="VERTICAL" prefHeight="130.0" prefTileHeight="130.0" prefTileWidth="130.0" prefWidth="130.0" vgap="15.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="-69.0" AnchorPane.topAnchor="36.0">
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
+            <TilePane fx:id="tilePane" prefHeight="130" prefWidth="130.0">
             </TilePane>
          </content>
       </ScrollPane>
-      <TextField fx:id="txtAlbumName" layoutX="98.0" layoutY="8.0" prefHeight="36.0" prefWidth="478.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="8.0" />
+      <TextField fx:id="txtAlbumName" alignment="TOP_LEFT" layoutX="17.0" layoutY="8.0" prefHeight="36.0" prefWidth="637.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="8.0" />
    </children>
 </AnchorPane>
