@@ -82,6 +82,7 @@ public class thumbViewControler {
     }
     
     public void setUsername(String username){
+        this.userName = username;
         for(User u : savedUsers){
             if(u.getName().equals(username))
                 userIndex = savedUsers.indexOf(u);

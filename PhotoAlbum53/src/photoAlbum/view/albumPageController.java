@@ -91,7 +91,6 @@ public class albumPageController {
         for (User u : savedUsers) {
             if (u.getName().equals(username))
                 index = savedUsers.indexOf(u);
-            photoalbum.setCurrentUser(u);
         }
         setAlbums();
     }
@@ -115,7 +114,7 @@ public class albumPageController {
     }
 
     public void deleteAlbum(ActionEvent actionEvent) {
-        savedUsers.get(index).getAlbumList().remove(AlbumList.getSelectionModel().getSelectedItem());
+        savedUsers.get(index).getAlbumList().remove(AlbumList.getSelectionModel().getSelectedIndex());
         Save(savedUsers);
         setAlbums();
 
