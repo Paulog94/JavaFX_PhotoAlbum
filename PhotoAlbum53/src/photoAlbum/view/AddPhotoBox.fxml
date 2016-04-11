@@ -21,7 +21,7 @@
    </columnConstraints>
    <children>
       <Button fx:id="save" mnemonicParsing="false" text="Save" GridPane.rowIndex="3" />
-      <Button fx:id="cancel" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Button fx:id="cancel" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="186.0" text="Add Photo" textAlignment="CENTER" GridPane.columnIndex="1" />
       <TextField fx:id="path" promptText="/path/" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField fx:id="caption" promptText="caption" GridPane.columnIndex="1" GridPane.rowIndex="2" />
