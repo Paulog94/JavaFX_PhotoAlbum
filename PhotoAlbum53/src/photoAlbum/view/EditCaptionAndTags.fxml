@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="327.0" prefWidth="437.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photoAlbum.view.EditCaptionController">
+   <children>
+      <ListView fx:id="TagView" layoutX="14.0" layoutY="80.0" prefHeight="190.0" prefWidth="192.0" />
+      <TextField fx:id="txtCaption" layoutX="18.0" layoutY="43.0" prefHeight="25.0" prefWidth="401.0" />
+      <TextField fx:id="txtType" layoutX="264.0" layoutY="138.0" promptText="Tag Type" />
+      <TextField fx:id="txtValue" layoutX="264.0" layoutY="163.0" promptText="Tag Value" />
+      <Button fx:id="btnCreateTag" layoutX="302.0" layoutY="188.0" mnemonicParsing="false" onAction="#CreateTag" text="Create Tag" />
+      <Button fx:id="btnDelete" layoutX="85.0" layoutY="273.0" mnemonicParsing="false" onAction="#DeleteTag" text="Delete" />
+      <Button fx:id="btnSave" layoutX="283.0" layoutY="252.0" mnemonicParsing="false" onAction="#save" prefHeight="54.0" prefWidth="112.0" text="Save" />
+      <Button fx:id="btnCaption" layoutX="300.0" layoutY="68.0" mnemonicParsing="false" onAction="#setCaption" text="Set Caption" />
+      <Label fx:id="lblCaption" layoutX="39.0" layoutY="14.0" prefHeight="17.0" prefWidth="331.0" />
+   </children>
+</AnchorPane>
