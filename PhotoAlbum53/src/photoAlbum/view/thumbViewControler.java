@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,6 +66,7 @@ public class thumbViewControler {
     @FXML
     private void initialize(){
        setPhotos();
+     //  drawTiles();
     }
     
     public void setPhotos() {
@@ -73,7 +76,7 @@ public class thumbViewControler {
         //if(!currentAlbum.getPhotoList().isEmpty()) {
             System.out.println("Photos are here");
             ObservableList<Photo> obsPhotoList = FXCollections.observableList(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList());
-            drawTiles();
+           // drawTiles();
         //}
     }
     
@@ -85,9 +88,11 @@ public class thumbViewControler {
         }
     }
     
+ 
+    
     public void drawTiles(){
         System.out.println("In ImageGallery");
-      //  imageGalleryField.setContent(tilePane);
+        imageGalleryField.setContent(tilePane);
         int x = savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().size();
         if(x==0){
             return;

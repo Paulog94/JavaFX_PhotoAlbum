@@ -191,6 +191,7 @@ public class albumPageController {
             controller.setAlbumIndex(AlbumList.getSelectionModel().getSelectedIndex());
             System.out.println("Album Index: "+AlbumList.getSelectionModel().getSelectedIndex());
             controller.setUsername(username);
+            controller.setAlbumIndex(AlbumList.getSelectionModel().getSelectedIndex());
             //controller.setPrevStage(prevStage);
 
 
@@ -201,6 +202,7 @@ public class albumPageController {
             prevStage.close();
 
             stage.show();
+            controller.drawTiles();
         } catch (IOException e) {
             e.printStackTrace();
         }
