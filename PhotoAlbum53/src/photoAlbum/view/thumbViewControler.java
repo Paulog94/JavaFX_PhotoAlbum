@@ -127,7 +127,9 @@ public class thumbViewControler {
                     //Place what needs to happen here
                     for(Photo p: savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
                         if(IPM.get(IV).equals(p)){
+
                             selectPhotoIndex = savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().indexOf(p);
+                            System.out.println("Selected Photo Index: "+selectPhotoIndex);
                             if(selectPhotoIndex ==0){
                                 firstP = 0;
                             }
@@ -205,10 +207,12 @@ public class thumbViewControler {
 
 
     public void ExitAlbum(ActionEvent actionEvent) {
+        IPM.clear();
         LaunchUserStage();
     }
 
     public void LogOut(ActionEvent actionEvent){
+        IPM.clear();
         LaunchLoginPage();
     }
 
@@ -255,5 +259,20 @@ public class thumbViewControler {
         }
     }
 
+
+    public void DeletePhoto(ActionEvent actionEvent) {
+        if (selectPhotoIndex == 0 && firstP == 0) {
+            savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().remove(selectPhotoIndex);
+            Save(savedUsers);
+            tilePane.getChildren().remove(selectPhotoIndex);
+
+        } else if (selectPhotoIndex != 0) {
+
+
+            savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().remove(selectPhotoIndex);
+            Save(savedUsers);
+            tilePane.getChildren().remove(selectPhotoIndex);
+        }
+    }
 
 }

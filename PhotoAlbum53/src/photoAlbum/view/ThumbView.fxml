@@ -33,7 +33,7 @@
                   <Insets left="4.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btnREmPhoto" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Remove Photo" GridPane.rowIndex="1">
+            <Button fx:id="btnREmPhoto" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#DeletePhoto" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Remove Photo" GridPane.rowIndex="1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
