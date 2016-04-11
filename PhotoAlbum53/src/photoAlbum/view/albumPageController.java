@@ -189,6 +189,7 @@ public class albumPageController {
             myPane = (Pane) myLoader.load();
             thumbViewControler controller = (thumbViewControler) myLoader.getController();
             controller.setAlbumIndex(AlbumList.getSelectionModel().getSelectedIndex());
+            System.out.println("Album Index: "+AlbumList.getSelectionModel().getSelectedIndex());
             controller.setUsername(username);
             //controller.setPrevStage(prevStage);
 
@@ -200,7 +201,6 @@ public class albumPageController {
             prevStage.close();
 
             stage.show();
-            setLabels();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -253,8 +253,8 @@ public class albumPageController {
 
         }
         Album a = AlbumList.getSelectionModel().getSelectedItem();
-        lblName.setText("Name: "+ name);
-        lblNumofP.setText("Number of Photos: "+NumOfPhotos);
+        lblName.setText("Name: " + name);
+        lblNumofP.setText("Number of Photos: " + NumOfPhotos);
 
     }
 }

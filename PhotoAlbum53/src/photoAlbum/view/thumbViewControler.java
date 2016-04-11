@@ -31,7 +31,7 @@ import photoAlbum.Model.User;
 public class thumbViewControler {
 
 
-    @FXML private AnchorPane ImageGalleryAnchorPane;
+   // @FXML private AnchorPane ImageGalleryAnchorPane;
     @FXML private ScrollPane imageGalleryField;
     private Album currentAlbum;
 	private Photo currentPhoto;
@@ -50,9 +50,9 @@ public class thumbViewControler {
     @FXML private Button btnLogOut;
     @FXML private Button btnExit;
     @FXML private Button btnOpen;
-    @FXML private ImageView selectedImage;
-    @FXML private ImageView thumbImage;
-    @FXML private TextField imageName;
+   // @FXML private ImageView selectedImage;
+   // @FXML private ImageView thumbImage;
+   // @FXML private TextField imageName;
     
     @FXML private TilePane tilePane = new TilePane();
     static Stage prevStage;
@@ -73,7 +73,7 @@ public class thumbViewControler {
         //if(!currentAlbum.getPhotoList().isEmpty()) {
             System.out.println("Photos are here");
             ObservableList<Photo> obsPhotoList = FXCollections.observableList(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList());
-            drawTiles(obsPhotoList);
+            drawTiles();
         //}
     }
     
@@ -85,21 +85,26 @@ public class thumbViewControler {
         }
     }
     
-    public void drawTiles(ObservableList<Photo> olp){
+    public void drawTiles(){
+        System.out.println("In ImageGallery");
         imageGalleryField.setContent(tilePane);
-        System.out.println("In Draw Tiles");
-    	if (!olp.isEmpty()){
-    		for(Photo p : savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
-                System.out.println("New Image ");
-                Image m = new Image (p.getURL());
-                ImageView IV = new ImageView(m);
-                IV.setFitWidth(150);
-                IV.setFitHeight(150);
-                tilePane.setPadding(new Insets(15, 15, 15, 15));
-                tilePane.setVgap(15);
-                tilePane.getChildren().add(IV);
-    		}
-    	}
+        int x = savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().size();
+        if(x==0){
+            return;
+        }
+        int IGR = 0;
+        int IGC = 0;
+        for(Photo p: savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
+
+            System.out.println("New Image ");
+            Image m = new Image (p.getURL());
+            ImageView IV = new ImageView(m);
+            IV.setFitWidth(150);
+            IV.setFitHeight(150);
+            tilePane.setPadding(new Insets(15,15,15,15));
+            tilePane.setVgap(15);
+            tilePane.getChildren().add(IV);
+        }
     }
 
     public void Save(ArrayList<User> users){
@@ -143,7 +148,7 @@ public class thumbViewControler {
         savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().add(p);
         Save(savedUsers);
         setPhotos();
-        selectedImage = new ImageView(new Image(m));
+        //selectedImage = new ImageView(new Image(m));
     }
 
     public void setPrevStage(Stage stage) {
