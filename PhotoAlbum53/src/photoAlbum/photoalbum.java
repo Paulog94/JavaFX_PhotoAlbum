@@ -35,16 +35,17 @@ public class photoalbum extends Application implements Serializable {
 
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("view\\LoginView.fxml"));
 
-        Pane myPane = (Pane)myLoader.load();
+        Pane myPane = myLoader.load();
 
-        LoginController controller = (LoginController) myLoader.getController();
+        //LoginController controller =  myLoader.getController();
 
-        controller.setPrevStage(primaryStage);
+        //controller.setPrevStage(primaryStage);
 
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);
         primaryStage.show();
         Save();
+
 
     }
 
@@ -108,4 +109,22 @@ public class photoalbum extends Application implements Serializable {
 	public static void setCurrentAlbum(Album currentAlbum) {
 		photoalbum.currentAlbum = currentAlbum;
 	}
+
+    //Launches Admin fxml
+    public void LaunchAdminStage(Stage p){
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("Welcome Admin");
+            Pane myPane;
+            myPane = FXMLLoader.load(getClass().getResource("AdminView.fxml"));
+            Scene scene = new Scene(myPane);
+            stage.setScene(scene);
+            p.close();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

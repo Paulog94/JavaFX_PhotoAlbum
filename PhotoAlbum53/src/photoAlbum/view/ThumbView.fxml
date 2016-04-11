@@ -19,13 +19,17 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photoAlbum.view.thumbViewControler">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photoAlbum.view.thumbViewControler">
    <children>
-      <SplitPane dividerPositions="0.7909698996655519" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.8210702341137124" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="409.0" prefWidth="798.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="798.0">
                <children>
-                  <TilePane fx:id="tilePane" layoutX="69.0" layoutY="36.0" prefHeight="381.0" prefWidth="798.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="-69.0" AnchorPane.topAnchor="36.0" />
+                  <ScrollPane fx:id="imageGalleryField" hbarPolicy="NEVER" layoutX="14.0" layoutY="80.0" nodeOrientation="LEFT_TO_RIGHT" prefViewportHeight="381.0" prefViewportWidth="798.0">
+                     <content>
+                        <TilePane fx:id="tilePane" alignment="TOP_RIGHT" layoutX="69.0" layoutY="36.0" maxHeight="130.0" maxWidth="130.0" minHeight="130.0" minWidth="130.0" orientation="VERTICAL" prefHeight="130.0" prefTileHeight="130.0" prefTileWidth="130.0" prefWidth="130.0" tileAlignment="TOP_LEFT" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="-69.0" AnchorPane.topAnchor="36.0" />
+                     </content>
+                  </ScrollPane>
                   <TextField fx:id="txtAlbumName" layoutX="151.0" prefHeight="36.0" prefWidth="496.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
@@ -110,7 +114,7 @@
                                     <Insets left="4.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button fx:id="btnLogOut" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Log Out" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <Button fx:id="btnLogOut" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Log Out" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>

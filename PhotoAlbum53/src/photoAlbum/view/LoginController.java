@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import photoAlbum.Model.User;
+import photoAlbum.photoalbum;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,8 +25,8 @@ public class LoginController {
     @FXML private Label lblLogin;
     @FXML private TextField txtUname;
     @FXML private Button btnLogin;
-    Stage prevStage;
-
+    private Stage prevStage;
+    private photoalbum palbum;
     private ArrayList<User> savedUsers;
 
     @FXML
@@ -34,6 +35,7 @@ public class LoginController {
         LoadUserList();
 
     }
+    public void setPhotoAlbum(photoalbum p){this.palbum = p;}
 
     public void setPrevStage(Stage stage){
         this.prevStage = stage;
@@ -66,7 +68,7 @@ public class LoginController {
             myPane = FXMLLoader.load(getClass().getResource("AdminView.fxml"));
             Scene scene = new Scene(myPane);
             stage.setScene(scene);
-
+            prevStage = (Stage) btnLogin.getScene().getWindow();
             prevStage.close();
 
             stage.show();
@@ -88,6 +90,8 @@ public class LoginController {
             albumPageController controller = (albumPageController) myLoader.getController();
             controller.setUsername(txtUname.getText());
             controller.setPrevStage(prevStage);
+            prevStage = (Stage) btnLogin.getScene().getWindow();
+            prevStage.close();
 
             Scene scene = new Scene(myPane);
             stage.setScene(scene);

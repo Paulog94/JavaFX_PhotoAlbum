@@ -25,7 +25,7 @@ public class albumPageController {
     private ArrayList<User> savedUsers;
     private String username;
     private int index;
-    Stage prevStage;
+    static Stage prevStage;
     //private Album currentAlbum;
 
     @FXML
@@ -190,13 +190,17 @@ public class albumPageController {
             thumbViewControler controller = (thumbViewControler) myLoader.getController();
             controller.setAlbumIndex(AlbumList.getSelectionModel().getSelectedIndex());
             controller.setUsername(username);
+            //controller.setPrevStage(prevStage);
+
 
 
             Scene scene = new Scene(myPane);
             stage.setScene(scene);
+            prevStage = (Stage) btnViewAlbum.getScene().getWindow();
             prevStage.close();
 
             stage.show();
+            setLabels();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -206,6 +210,7 @@ public class albumPageController {
         if (AlbumList.getSelectionModel().isEmpty()) {
             return;
         }
+        LoadUserList();
         txtEdit.setText(AlbumList.getSelectionModel().getSelectedItem().getName());
         photoalbum.setCurrentAlbum(AlbumList.getSelectionModel().getSelectedItem());
         setLabels();

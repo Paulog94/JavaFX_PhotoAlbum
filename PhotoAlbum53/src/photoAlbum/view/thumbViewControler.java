@@ -11,25 +11,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import photoAlbum.Model.Album;
 import photoAlbum.Model.Photo;
 import photoAlbum.Model.User;
 
 public class thumbViewControler {
-	
-	
-	private Album currentAlbum;
+
+
+    @FXML private ScrollPane imageGalleryField;
+    private Album currentAlbum;
 	private Photo currentPhoto;
 	private User currentUser;
 	private String userName;
@@ -51,6 +54,7 @@ public class thumbViewControler {
     @FXML private TextField imageName;
     
     @FXML private TilePane tilePane = new TilePane();
+    static Stage prevStage;
 
     public thumbViewControler(){
 
@@ -81,17 +85,18 @@ public class thumbViewControler {
     }
     
     public void drawTiles(ObservableList<Photo> olp){
+
         System.out.println("In Draw Tiles");
     	if (!olp.isEmpty()){
-    		for(Photo p : olp){
-                System.out.println("Loading Photo");
-    			Label title = new Label (p.getCaption());
-                Image m = new Image(p.getURL());
-    			ImageView imageview = new ImageView(m);
-    	           TilePane.setAlignment(title, Pos.BOTTOM_RIGHT);
-    	           tilePane.getChildren().addAll(title, imageview);
-                imageview.fitHeightProperty();
-                imageview.fitWidthProperty();
+    		for(Photo p : savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
+                System.out.println("New Image ");
+                Image m = new Image (p.getURL());
+                ImageView IV = new ImageView(m);
+                IV.setFitWidth(150);
+                IV.setFitHeight(150);
+                tilePane.setPadding(new Insets(15, 15, 15, 15));
+                tilePane.setVgap(15);
+                tilePane.getChildren().add(IV);
     		}
     	}
     }
@@ -138,4 +143,38 @@ public class thumbViewControler {
         Save(savedUsers);
         setPhotos();
     }
+
+    public void setPrevStage(Stage stage) {
+        this.prevStage = stage;
+    }
+
+
+    public void LogOut(ActionEvent actionEvent) {
+    LaunchUserStage();
+    }
+
+    public void LaunchUserStage(){
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("Welcome "+userName);
+            Pane myPane;
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AlbumPage.fxml"));
+            myPane = (Pane) myLoader.load();
+            albumPageController controller = (albumPageController) myLoader.getController();
+            controller.setUsername(userName);
+            controller.setPrevStage(prevStage);
+            prevStage = (Stage) btnLogOut.getScene().getWindow();
+            prevStage.close();
+
+            Scene scene = new Scene(myPane);
+            stage.setScene(scene);
+            prevStage.close();
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
