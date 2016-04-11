@@ -111,11 +111,10 @@ public class thumbViewControler {
         System.out.println("In ImageGallery");
         imageGalleryField.setContent(tilePane);
         int x = savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().size();
+        IPM = new HashMap<ImageView,Photo>();
         if(x==0){
             return;
         }
-
-        IPM = new HashMap<ImageView,Photo>();
         for(Photo p: savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
 
             System.out.println("New Image ");
@@ -204,14 +203,40 @@ public class thumbViewControler {
               Photo newPhoto = new Photo(fakeURL.toString(),file.getName());
               savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().add(newPhoto);
               Save(savedUsers);
+              //LoadUserList();
               
         	//  URI uri = newPhoto.getURL().toURI();
         	//  URL fakeURL = uri.toURL();
               System.out.println();
               Image m = new Image (newPhoto.getURL());
-              ImageView IV = new ImageView(m);
+              final ImageView IV = new ImageView(m);
+              IPM.put(IV,newPhoto);
+
               IV.setFitWidth(100);
               IV.setFitHeight(100);
+
+              IV.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+                  @Override
+                  public void handle(MouseEvent event) {
+                      //Place what needs to happen here
+                      for(Photo p: savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
+                          if(IPM.get(IV).equals(p)){
+
+                              selectPhotoIndex = savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().indexOf(p);
+                              System.out.println("Selected Photo Index: "+selectPhotoIndex);
+                              if(selectPhotoIndex ==0){
+                                  firstP = 0;
+                              }
+                              else
+                                  firstP = 1;
+                          }
+
+                      }
+                      event.consume();
+                  }
+              });
+              
               tilePane.setPadding(new Insets(15,15,15,15));
               tilePane.setVgap(15);
               tilePane.getChildren().add(IV);
@@ -244,12 +269,12 @@ public class thumbViewControler {
 
 
     public void ExitAlbum(ActionEvent actionEvent) {
-        IPM.clear();
+       // IPM.clear();
         LaunchUserStage();
     }
 
     public void LogOut(ActionEvent actionEvent){
-        IPM.clear();
+       // IPM.clear();
         LaunchLoginPage();
     }
 
