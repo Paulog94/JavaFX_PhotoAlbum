@@ -5,13 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -58,7 +61,11 @@ public class thumbViewControler {
    // @FXML private ImageView selectedImage;
    // @FXML private ImageView thumbImage;
    // @FXML private TextField imageName;
-    
+
+    private HashMap<ImageView,Photo> IPM;
+    private int selectPhotoIndex;
+    private int firstP = 1;
+
     @FXML private TilePane tilePane = new TilePane();
     static Stage prevStage;
 
@@ -102,12 +109,14 @@ public class thumbViewControler {
         if(x==0){
             return;
         }
-        int pIndex;
+
+        IPM = new HashMap<ImageView,Photo>();
         for(Photo p: savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
 
             System.out.println("New Image ");
             Image m = new Image (p.getURL());
             final ImageView IV = new ImageView(m);
+            IPM.put(IV,p);
             IV.setFitWidth(100);
             IV.setFitHeight(100);
             //Allows for clickable image view
@@ -116,7 +125,17 @@ public class thumbViewControler {
                 @Override
                 public void handle(MouseEvent event) {
                     //Place what needs to happen here
-                    System.out.println(IV.getImage().toString());
+                    for(Photo p: savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
+                        if(IPM.get(IV).equals(p)){
+                            selectPhotoIndex = savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().indexOf(p);
+                            if(selectPhotoIndex ==0){
+                                firstP = 0;
+                            }
+                            else
+                                firstP = 1;
+                        }
+
+                    }
                     event.consume();
                 }
             });
