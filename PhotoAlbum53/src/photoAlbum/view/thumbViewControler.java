@@ -236,7 +236,7 @@ public class thumbViewControler {
                       event.consume();
                   }
               });
-              
+
               tilePane.setPadding(new Insets(15,15,15,15));
               tilePane.setVgap(15);
               tilePane.getChildren().add(IV);
@@ -263,6 +263,8 @@ public class thumbViewControler {
         //setPhotos();
         //selectedImage = new ImageView(new Image(m));
     }
+
+
     public void setPrevStage(Stage stage) {
         this.prevStage = stage;
     }
@@ -337,4 +339,31 @@ public class thumbViewControler {
         }
     }
 
+    public void EditCaptionTags(ActionEvent actionEvent) throws IOException {
+        if(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot edit Photo");
+            alert.setContentText("Album is empty");
+            alert.showAndWait();
+            return;
+        }
+        Stage stage = new Stage();
+        stage.setTitle("Welcome "+userName);
+        Pane myPane;
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("EditCaptionAndTags.fxml"));
+        myPane = (Pane) myLoader.load();
+        EditCaptionController controller = (EditCaptionController) myLoader.getController();
+        controller.setUsername(userName);
+        controller.setAlbumIndex(albumIndex);
+        controller.setPhotoIndex(selectPhotoIndex);
+
+
+        Scene scene = new Scene(myPane);
+        stage.setScene(scene);
+
+        stage.showAndWait();
+        LoadUserList();
+
+    }
 }

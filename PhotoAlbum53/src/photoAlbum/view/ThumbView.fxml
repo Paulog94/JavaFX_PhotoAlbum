@@ -44,7 +44,7 @@
                   <Font size="10.0" />
                </font>
             </Button>
-            <Button fx:id="btnCapTag" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="84.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Caption/Tag" GridPane.columnIndex="1">
+            <Button fx:id="btnCapTag" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="84.0" onAction="#EditCaptionTags" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Caption/Tag" GridPane.columnIndex="1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
