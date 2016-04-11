@@ -1,10 +1,14 @@
 package photoAlbum.view;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -48,6 +52,7 @@ public class thumbViewControler {
     private ArrayList<User> savedUsers;
     private int userIndex;
     private int albumIndex;
+    private Stage stage;
     
     @FXML private TextField txtAlbumName;
     @FXML private Button btnAddPhoto;
@@ -179,9 +184,42 @@ public class thumbViewControler {
         albumIndex = a;
     }
 
-    public void AddPhoto(ActionEvent actionEvent) {
+ public void AddPhoto(ActionEvent actionEvent) {
+    	
+    	
+    	FileChooser fileChooser = new FileChooser();
+    	fileChooser.setTitle("Open Resource File");
+    	//fileChooser.showOpenDialog(stage);
+    	  File file = fileChooser.showOpenDialog(stage);
+          if (file != null) {
+        	  URI uri = file.toURI();
+        	URL fakeURL = null;
+			try {
+				fakeURL = uri.toURL();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	  
+              Photo newPhoto = new Photo(fakeURL.toString(),file.getName());
+              savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().add(newPhoto);
+              Save(savedUsers);
+              
+        	//  URI uri = newPhoto.getURL().toURI();
+        	//  URL fakeURL = uri.toURL();
+              System.out.println();
+              Image m = new Image (newPhoto.getURL());
+              ImageView IV = new ImageView(m);
+              IV.setFitWidth(100);
+              IV.setFitHeight(100);
+              tilePane.setPadding(new Insets(15,15,15,15));
+              tilePane.setVgap(15);
+              tilePane.getChildren().add(IV);
+          }
 
-        System.out.println("Adding new Images");
+          
+
+ /*       System.out.println("Adding new Images");
         String m = "https://s-media-cache-ak0.pinimg.com/originals/ed/a2/f4/eda2f478dddfc299b09c54a10baee0a9.gif";
         System.out.println(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().size());
         Photo p = new Photo(m);
@@ -195,12 +233,11 @@ public class thumbViewControler {
         IV.setFitHeight(100);
         tilePane.setPadding(new Insets(15,15,15,15));
         tilePane.setVgap(15);
-        tilePane.getChildren().add(IV);
+        tilePane.getChildren().add(IV);*/
         
         //setPhotos();
         //selectedImage = new ImageView(new Image(m));
     }
-
     public void setPrevStage(Stage stage) {
         this.prevStage = stage;
     }
