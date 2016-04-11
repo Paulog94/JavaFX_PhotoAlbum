@@ -25,7 +25,6 @@ public class EditCaptionController {
     @FXML private TextField txtValue;
     @FXML private Button btnCreateTag;
     @FXML private Button btnDelete;
-    @FXML private Button btnOkay;
     @FXML private Button btnCaption;
     @FXML private Label lblCaption;
     @FXML private ListView TagView;
@@ -38,15 +37,13 @@ public class EditCaptionController {
     @FXML
     private void initialize(){
         LoadUserList();
-        //savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getTags();
-        setTags();
-        lblCaption.setText("Caption: "
-                +savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getCaption());
     }
 
     public void setTags() {
-        LoadUserList();
+        lblCaption.setText("Caption: "
+                +savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getCaption());
 
+        txtCaption.setText(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getCaption());
         ObservableList<tag> ObsUserList = FXCollections.observableList(
                 savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(
                         pIndex).getTags());
@@ -71,15 +68,36 @@ public class EditCaptionController {
     }
 
     public void CreateTag(ActionEvent actionEvent) {
+        if(!txtType.getText().isEmpty() && !txtValue.getText().isEmpty()){
+            tag newTag = new tag(txtType.getText(),txtValue.getText());
+            savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getTags().add(newTag);
+            setTags();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot add tag");
+            alert.setContentText("Tag Value and Tag Type cannot be empty.");
+            alert.showAndWait();
+        }
     }
 
     public void DeleteTag(ActionEvent actionEvent) {
-    }
+        if(TagView.getSelectionModel().isEmpty()){
+            return;
+        }
+        savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).
+                getTags().remove(TagView.getSelectionModel().getSelectedIndex());
 
-    public void Okay(ActionEvent actionEvent) {
+        setTags();
     }
 
     public void setCaption(ActionEvent actionEvent) {
+        savedUsers.get(userIndex).getAlbumList().get(albumIndex).
+                getPhotoList().get(pIndex).editCaption(txtCaption.getText());
+
+        lblCaption.setText("Caption: "
+                +savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getCaption());
     }
 
     public void setUsername(String username){

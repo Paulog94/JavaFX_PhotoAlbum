@@ -13,7 +13,7 @@
       <TextField fx:id="txtValue" layoutX="264.0" layoutY="163.0" promptText="Tag Value" />
       <Button fx:id="btnCreateTag" layoutX="302.0" layoutY="188.0" mnemonicParsing="false" onAction="#CreateTag" text="Create Tag" />
       <Button fx:id="btnDelete" layoutX="85.0" layoutY="273.0" mnemonicParsing="false" onAction="#DeleteTag" text="Delete" />
-      <Button fx:id="btnSave" layoutX="283.0" layoutY="252.0" mnemonicParsing="false" onAction="#save" prefHeight="54.0" prefWidth="112.0" text="Okay" />
+      <Button fx:id="btnSave" layoutX="283.0" layoutY="252.0" mnemonicParsing="false" onAction="#save" prefHeight="54.0" prefWidth="112.0" text="Save" />
       <Button fx:id="btnCaption" layoutX="300.0" layoutY="68.0" mnemonicParsing="false" onAction="#setCaption" text="Set Caption" />
       <Label fx:id="lblCaption" layoutX="39.0" layoutY="14.0" prefHeight="17.0" prefWidth="331.0" />
    </children>

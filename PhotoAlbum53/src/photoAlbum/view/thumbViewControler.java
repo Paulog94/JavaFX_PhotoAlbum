@@ -357,13 +357,14 @@ public class thumbViewControler {
         controller.setUsername(userName);
         controller.setAlbumIndex(albumIndex);
         controller.setPhotoIndex(selectPhotoIndex);
-
+        controller.setTags();
 
         Scene scene = new Scene(myPane);
         stage.setScene(scene);
 
         stage.showAndWait();
-        LoadUserList();
+        stage.close();
+        //LoadUserList();
 
     }
 }
