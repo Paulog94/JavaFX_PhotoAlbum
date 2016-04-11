@@ -8,10 +8,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -20,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -99,15 +102,24 @@ public class thumbViewControler {
         if(x==0){
             return;
         }
-        int IGR = 0;
-        int IGC = 0;
+        int pIndex;
         for(Photo p: savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
 
             System.out.println("New Image ");
             Image m = new Image (p.getURL());
-            ImageView IV = new ImageView(m);
+            final ImageView IV = new ImageView(m);
             IV.setFitWidth(100);
             IV.setFitHeight(100);
+            //Allows for clickable image view
+            IV.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    //Place what needs to happen here
+                    System.out.println(IV.getImage().toString());
+                    event.consume();
+                }
+            });
             tilePane.setPadding(new Insets(15,15,15,15));
             tilePane.setVgap(15);
             tilePane.getChildren().add(IV);
@@ -154,7 +166,7 @@ public class thumbViewControler {
         Photo p = new Photo(m);
         savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().add(p);
         Save(savedUsers);
-        
+
         System.out.println("Add Image ");
         //Image m = new Image (p.getURL());
         ImageView IV = new ImageView(m);
