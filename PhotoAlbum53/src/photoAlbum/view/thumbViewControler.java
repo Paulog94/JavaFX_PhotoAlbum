@@ -31,6 +31,7 @@ import photoAlbum.Model.User;
 public class thumbViewControler {
 
 
+    @FXML private AnchorPane ImageGalleryAnchorPane;
     @FXML private ScrollPane imageGalleryField;
     private Album currentAlbum;
 	private Photo currentPhoto;
@@ -85,7 +86,7 @@ public class thumbViewControler {
     }
     
     public void drawTiles(ObservableList<Photo> olp){
-
+        imageGalleryField.setContent(tilePane);
         System.out.println("In Draw Tiles");
     	if (!olp.isEmpty()){
     		for(Photo p : savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList()){
@@ -142,6 +143,7 @@ public class thumbViewControler {
         savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().add(p);
         Save(savedUsers);
         setPhotos();
+        selectedImage = new ImageView(new Image(m));
     }
 
     public void setPrevStage(Stage stage) {
@@ -149,8 +151,12 @@ public class thumbViewControler {
     }
 
 
-    public void LogOut(ActionEvent actionEvent) {
-    LaunchUserStage();
+    public void ExitAlbum(ActionEvent actionEvent) {
+        LaunchUserStage();
+    }
+
+    public void LogOut(ActionEvent actionEvent){
+        LaunchLoginPage();
     }
 
     public void LaunchUserStage(){
@@ -163,6 +169,26 @@ public class thumbViewControler {
             albumPageController controller = (albumPageController) myLoader.getController();
             controller.setUsername(userName);
             controller.setPrevStage(prevStage);
+            prevStage = (Stage) btnLogOut.getScene().getWindow();
+            prevStage.close();
+
+            Scene scene = new Scene(myPane);
+            stage.setScene(scene);
+            prevStage.close();
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void LaunchLoginPage(){
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("Login");
+            Pane myPane;
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
+            myPane = (Pane) myLoader.load();
             prevStage = (Stage) btnLogOut.getScene().getWindow();
             prevStage.close();
 

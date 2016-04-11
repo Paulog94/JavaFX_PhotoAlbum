@@ -10,5 +10,6 @@
       <TextField fx:id="txtAddUser" alignment="CENTER" layoutX="422.0" layoutY="89.0" promptText="add new user" />
       <Button fx:id="btnAddUser" layoutX="465.0" layoutY="114.0" mnemonicParsing="false" onAction="#AddUser" text="add user" />
       <Button fx:id="btnDeleteUser" layoutX="459.0" layoutY="224.0" mnemonicParsing="false" onAction="#DeleteUser" text="delete User" />
+      <Button fx:id="btnLogout" layoutX="439.0" layoutY="341.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="38.0" prefWidth="149.0" text="Log Out" />
    </children>
 </AnchorPane>

@@ -5,8 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import photoAlbum.Model.User;
 
@@ -22,6 +26,7 @@ public class AdminController {
     @FXML private TextField txtAddUser;
     @FXML private Button btnAddUser;
     @FXML private Button btnDeleteUser;
+    @FXML private Button btnLogout;
     @FXML private ListView<User> UserList = new ListView<User>();
 
     public AdminController(){
@@ -128,6 +133,30 @@ public class AdminController {
             return false;
 
         return true;
+    }
+
+    public void LogOut(ActionEvent actionEvent){
+        LaunchLoginPage();
+    }
+
+    public void LaunchLoginPage(){
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("Login");
+            Pane myPane;
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
+            myPane = (Pane) myLoader.load();
+            Stage prevStage = (Stage) btnLogout.getScene().getWindow();
+            prevStage.close();
+
+            Scene scene = new Scene(myPane);
+            stage.setScene(scene);
+            prevStage.close();
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
