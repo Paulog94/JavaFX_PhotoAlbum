@@ -90,6 +90,8 @@ public class thumbViewControler {
     			ImageView imageview = new ImageView(m);
     	           TilePane.setAlignment(title, Pos.BOTTOM_RIGHT);
     	           tilePane.getChildren().addAll(title, imageview);
+                imageview.fitHeightProperty();
+                imageview.fitWidthProperty();
     		}
     	}
     }
