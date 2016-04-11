@@ -18,14 +18,24 @@ import photoAlbum.Model.User;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class albumPageController {
+
     private ArrayList<User> savedUsers;
     private String username;
     private int index;
     Stage prevStage;
     //private Album currentAlbum;
 
+    @FXML
+    private Label lblName;
+    @FXML
+    private Label lblNumofP;
+    @FXML
+    private Label lblOldestDate;
+    @FXML
+    private Label lblDateRange;
     @FXML
     private TextField txtSearch;
     @FXML
@@ -76,10 +86,10 @@ public class albumPageController {
     }
 
 
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
-        for(User u : savedUsers){
-            if(u.getName().equals(username))
+        for (User u : savedUsers) {
+            if (u.getName().equals(username))
                 index = savedUsers.indexOf(u);
             photoalbum.setCurrentUser(u);
         }
@@ -93,8 +103,7 @@ public class albumPageController {
             Save(savedUsers);
             setAlbums();
             txtAddAlbum.clear();
-        }
-        else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText("Cannot add Album");
@@ -103,19 +112,19 @@ public class albumPageController {
         }
 
 
-
     }
-    
-    public void deleteAlbum(ActionEvent actionEvent){
+
+    public void deleteAlbum(ActionEvent actionEvent) {
         savedUsers.get(index).getAlbumList().remove(AlbumList.getSelectionModel().getSelectedItem());
         Save(savedUsers);
         setAlbums();
 
     }
 
-    public void SearchPhoto(ActionEvent actionEvent){}
+    public void SearchPhoto(ActionEvent actionEvent) {
+    }
 
-    public void Save(ArrayList<User> users){
+    public void Save(ArrayList<User> users) {
 
         ObjectOutputStream oos = null;
         try {
@@ -128,7 +137,7 @@ public class albumPageController {
 
     }
 
-    public void LoadUserList(){
+    public void LoadUserList() {
 
         ObjectInputStream ois;
         try {
@@ -150,13 +159,12 @@ public class albumPageController {
     }
 
     public void editAlbum(ActionEvent actionEvent) {
-        if(!AlbumList.getSelectionModel().isEmpty() && isValidAlbum(txtEdit.getText())) {
+        if (!AlbumList.getSelectionModel().isEmpty() && isValidAlbum(txtEdit.getText())) {
             AlbumList.getSelectionModel().getSelectedItem().setName(txtEdit.getText());
             Save(savedUsers);
             setAlbums();
             txtEdit.clear();
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText("Cannot Edit Album");
@@ -164,54 +172,84 @@ public class albumPageController {
             alert.showAndWait();
         }
     }
-    
-    public void setPrevStage(Stage stage){
+
+    public void setPrevStage(Stage stage) {
         this.prevStage = stage;
     }
 
     public void ViewAlbum(ActionEvent actionEvent) {
-        if(AlbumList.getSelectionModel().isEmpty()){
+        if (AlbumList.getSelectionModel().isEmpty()) {
             return;
         }
-    	 try {
-             Stage stage = new Stage();
-             stage.setTitle(AlbumList.getSelectionModel().getSelectedItem().getName());
-             Pane myPane;
-             FXMLLoader myLoader = new FXMLLoader(getClass().getResource("ThumbView.fxml"));
-             myPane = (Pane) myLoader.load();
-             thumbViewControler controller = (thumbViewControler) myLoader.getController();
-             controller.setAlbumIndex(AlbumList.getSelectionModel().getSelectedIndex());
-             controller.setUsername(username);
+        try {
+            Stage stage = new Stage();
+            stage.setTitle(AlbumList.getSelectionModel().getSelectedItem().getName());
+            Pane myPane;
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("ThumbView.fxml"));
+            myPane = (Pane) myLoader.load();
+            thumbViewControler controller = (thumbViewControler) myLoader.getController();
+            controller.setAlbumIndex(AlbumList.getSelectionModel().getSelectedIndex());
+            controller.setUsername(username);
 
 
-             Scene scene = new Scene(myPane);
-             stage.setScene(scene);
-             prevStage.close();
+            Scene scene = new Scene(myPane);
+            stage.setScene(scene);
+            prevStage.close();
 
-             stage.show();
-         } catch (IOException e) {
-             e.printStackTrace();
-         }
-     }
-    
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void SelectedAlbum(Event event) {
-        if(AlbumList.getSelectionModel().isEmpty()){
+        if (AlbumList.getSelectionModel().isEmpty()) {
             return;
         }
         txtEdit.setText(AlbumList.getSelectionModel().getSelectedItem().getName());
         photoalbum.setCurrentAlbum(AlbumList.getSelectionModel().getSelectedItem());
+        setLabels();
     }
 
-    public boolean isValidAlbum(String album){
+    public boolean isValidAlbum(String album) {
 
-        for(Album a : savedUsers.get(index).getAlbumList()){
-            if(a.getName().equals(album))
+        for (Album a : savedUsers.get(index).getAlbumList()) {
+            if (a.getName().equals(album))
                 return false;
         }
-        if(album.equals("") || album.isEmpty())
+        if (album.equals("") || album.isEmpty())
             return false;
 
         return true;
+    }
+
+    public void setLabels(){
+        String name = AlbumList.getSelectionModel().getSelectedItem().getName();
+        int NumOfPhotos = AlbumList.getSelectionModel().getSelectedItem().getPhotoList().size();
+        if(NumOfPhotos==0){
+            lblOldestDate.setText("Oldest Date: Empty");
+            lblDateRange.setText("No Range");
+        }
+        else{
+
+            Calendar oldest = AlbumList.getSelectionModel().getSelectedItem().getPhotoList().get(0).getDate();
+            Calendar newest = AlbumList.getSelectionModel().getSelectedItem().getPhotoList().get(0).getDate();
+
+            for(Photo p : AlbumList.getSelectionModel().getSelectedItem().getPhotoList()){
+                if(oldest.compareTo(p.getDate())<0){
+                    oldest = p.getDate();
+                }
+                if(newest.compareTo(p.getDate())>0){
+                    newest = p.getDate();
+                }
+            }
+            lblOldestDate.setText("Oldest Photo Date: "+ oldest.getTime().toString());
+            lblDateRange.setText(oldest.getTime().toString()+ " - "+newest.getTime().toString());
+
+        }
+        Album a = AlbumList.getSelectionModel().getSelectedItem();
+        lblName.setText("Name: "+ name);
+        lblNumofP.setText("Number of Photos: "+NumOfPhotos);
+
     }
 }
