@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photoAlbum.view.addPhotoController">
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+   </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints maxWidth="95.0" minWidth="10.0" prefWidth="56.0" />
+      <ColumnConstraints maxWidth="186.0" minWidth="10.0" prefWidth="186.0" />
+      <ColumnConstraints maxWidth="95.0" minWidth="10.0" prefWidth="58.0" />
+   </columnConstraints>
+   <children>
+      <Button fx:id="save" mnemonicParsing="false" text="Save" GridPane.rowIndex="3" />
+      <Button fx:id="cancel" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="186.0" text="Add Photo" textAlignment="CENTER" GridPane.columnIndex="1" />
+      <TextField fx:id="path" promptText="/path/" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="caption" promptText="caption" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="files" mnemonicParsing="false" text="Files" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label text="Path" GridPane.rowIndex="1" />
+      <Label text="Caption" GridPane.rowIndex="2" />
+   </children>
+</GridPane>
