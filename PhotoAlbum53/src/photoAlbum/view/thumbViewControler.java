@@ -65,13 +65,14 @@ public class thumbViewControler {
     
     @FXML
     private void initialize(){
-       setPhotos();
+    	LoadUserList();
+      // setPhotos();
      //  drawTiles();
     }
     
     public void setPhotos() {
         System.out.println("Setting Photos");
-        LoadUserList();
+       // LoadUserList();
         savedUsers.get(userIndex).getAlbumList().get(albumIndex);
         //if(!currentAlbum.getPhotoList().isEmpty()) {
             System.out.println("Photos are here");

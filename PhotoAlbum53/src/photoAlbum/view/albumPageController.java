@@ -192,6 +192,7 @@ public class albumPageController {
             System.out.println("Album Index: "+AlbumList.getSelectionModel().getSelectedIndex());
             controller.setUsername(username);
             controller.setAlbumIndex(AlbumList.getSelectionModel().getSelectedIndex());
+            controller.setPhotos();
             //controller.setPrevStage(prevStage);
 
 
