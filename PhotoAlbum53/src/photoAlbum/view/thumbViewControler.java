@@ -87,7 +87,7 @@ public class thumbViewControler {
     
     public void drawTiles(){
         System.out.println("In ImageGallery");
-        imageGalleryField.setContent(tilePane);
+      //  imageGalleryField.setContent(tilePane);
         int x = savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().size();
         if(x==0){
             return;
@@ -99,8 +99,8 @@ public class thumbViewControler {
             System.out.println("New Image ");
             Image m = new Image (p.getURL());
             ImageView IV = new ImageView(m);
-            IV.setFitWidth(150);
-            IV.setFitHeight(150);
+            IV.setFitWidth(100);
+            IV.setFitHeight(100);
             tilePane.setPadding(new Insets(15,15,15,15));
             tilePane.setVgap(15);
             tilePane.getChildren().add(IV);
@@ -147,7 +147,17 @@ public class thumbViewControler {
         Photo p = new Photo(m);
         savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().add(p);
         Save(savedUsers);
-        setPhotos();
+        
+        System.out.println("Add Image ");
+        //Image m = new Image (p.getURL());
+        ImageView IV = new ImageView(m);
+        IV.setFitWidth(100);
+        IV.setFitHeight(100);
+        tilePane.setPadding(new Insets(15,15,15,15));
+        tilePane.setVgap(15);
+        tilePane.getChildren().add(IV);
+        
+        //setPhotos();
         //selectedImage = new ImageView(new Image(m));
     }
 
