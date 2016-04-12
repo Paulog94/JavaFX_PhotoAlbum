@@ -80,7 +80,6 @@ public class AdminController {
 
     }
 
-
     public void DeleteUser(ActionEvent actionEvent){
 
         savedUsers.remove(UserList.getSelectionModel().getSelectedItem());

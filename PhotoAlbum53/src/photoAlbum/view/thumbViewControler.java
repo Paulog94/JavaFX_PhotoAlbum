@@ -105,8 +105,6 @@ public class thumbViewControler {
         }
     }
     
- 
-    
     public void drawTiles(){
         System.out.println("In ImageGallery");
         imageGalleryField.setContent(tilePane);
@@ -183,9 +181,8 @@ public class thumbViewControler {
         albumIndex = a;
     }
 
- public void AddPhoto(ActionEvent actionEvent) {
-    	
-    	
+    public void AddPhoto(ActionEvent actionEvent) {
+
     	FileChooser fileChooser = new FileChooser();
     	fileChooser.setTitle("Open Resource File");
     	//fileChooser.showOpenDialog(stage);
@@ -263,7 +260,6 @@ public class thumbViewControler {
         //setPhotos();
         //selectedImage = new ImageView(new Image(m));
     }
-
 
     public void setPrevStage(Stage stage) {
         this.prevStage = stage;
@@ -365,6 +361,42 @@ public class thumbViewControler {
         stage.showAndWait();
         stage.close();
         //LoadUserList();
+
+    }
+
+    public void MovePhoto(ActionEvent actionEvent) throws IOException {
+
+        if ((selectPhotoIndex == 0 && firstP == 0) || (selectPhotoIndex != 0)) {
+
+            Stage stage = new Stage();
+            stage.setTitle("Welcome "+userName+" Please Move Photo");
+            Pane myPane;
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("MovePhotoView.fxml"));
+            myPane = (Pane) myLoader.load();
+            MovePhotoController controller = (MovePhotoController) myLoader.getController();
+            controller.setUsername(userName);
+            controller.setAlbumIndex(albumIndex);
+            controller.setPhotoIndex(selectPhotoIndex);
+            controller.setParentTilePane(tilePane);
+            controller.setAlbums();
+            controller.setImageView();
+
+            Scene scene = new Scene(myPane);
+            stage.setScene(scene);
+
+            stage.showAndWait();
+            stage.close();
+
+
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Select a Photo First");
+            alert.setContentText("Photo is not selected");
+            alert.showAndWait();
+            return;
+        }
 
     }
 }

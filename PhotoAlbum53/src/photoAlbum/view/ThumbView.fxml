@@ -76,7 +76,7 @@
                   <Insets left="4.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btnMovePhoto" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Move Photo" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="btnMovePhoto" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="20.0" mnemonicParsing="false"  onAction="#MovePhoto" prefHeight="39.0" prefWidth="87.0" snapToPixel="false" text="Move Photo" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
