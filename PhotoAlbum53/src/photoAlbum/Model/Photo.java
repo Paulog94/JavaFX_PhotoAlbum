@@ -19,6 +19,11 @@ public class Photo implements Serializable {
     private ArrayList<tag> tags;
     Calendar date;
 
+    /**
+     * Adds Photo with Url and caption
+     * @param url
+     * @param caption
+     */
     public Photo(String url, String caption){
         this.url = url;
         this.caption = caption;
@@ -28,6 +33,11 @@ public class Photo implements Serializable {
         date.set(Calendar.MILLISECOND,0);
     }
 
+    /**
+     * Adds UrL with just an empty Caption
+     *
+     * @param url
+     */
     public Photo(String url){
         this.url= url;
         caption = "";

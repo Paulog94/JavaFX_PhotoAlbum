@@ -18,6 +18,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
+ * Used to move Photos from one place to another Album
+ *
  * Created by Paulo1 on 4/11/2016.
  */
 public class MovePhotoController {
@@ -40,6 +42,10 @@ public class MovePhotoController {
         LoadUserList();
     }
 
+    /**
+     * Saves the move
+     * @param actionEvent
+     */
     public void Save(ActionEvent actionEvent) {
         if(AlbumList.getSelectionModel().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -59,11 +65,18 @@ public class MovePhotoController {
         stage.close();
     }
 
+    /**
+     * Exits View and doesnt Save
+     * @param actionEvent
+     */
     public void Cancel(ActionEvent actionEvent) {
         Stage stage = (Stage) btnSave.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sets Image
+     */
     public void setImageView(){
 
         lblCaption.setText(savedUsers.get(userIndex).getAlbumList().get(src).getPhotoList().get(pIndex).getCaption());
@@ -73,6 +86,9 @@ public class MovePhotoController {
         imgView.getViewport();
     }
 
+    /**
+     * sets Album List to move to
+     */
     public void setAlbums() {
         LoadUserList();
 
@@ -95,6 +111,8 @@ public class MovePhotoController {
             }
         });
     }
+
+
     public void setUsername(String username){
         this.userName = username;
 
@@ -140,6 +158,10 @@ public class MovePhotoController {
     }
     public void setParentTilePane(TilePane TP){this.TP = TP;}
 
+    /**
+     * Changes Labels
+     * @param event
+     */
     public void ChangeLabels(Event event) {
         if (!AlbumList.getSelectionModel().isEmpty()) {
             int des = AlbumList.getSelectionModel().getSelectedIndex();

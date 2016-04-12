@@ -13,15 +13,14 @@ import photoAlbum.view.LoginController;
 import java.io.*;
 import java.util.ArrayList;
 
-
+/**
+ * Launches the Login View
+ */
 public class photoalbum extends Application implements Serializable {
 
-    private static Stage Login;
-    private static Stage Admin;
     private static ArrayList<User> UserList = new ArrayList<User>();
     private static User currentUser;
     private static Album currentAlbum;
-
 
     public static void main(String[] args) {
         launch(args);
@@ -36,10 +35,6 @@ public class photoalbum extends Application implements Serializable {
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("view\\LoginView.fxml"));
 
         Pane myPane = myLoader.load();
-
-        //LoginController controller =  myLoader.getController();
-
-        //controller.setPrevStage(primaryStage);
 
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);
@@ -71,12 +66,10 @@ public class photoalbum extends Application implements Serializable {
             UL = (ArrayList<User>) ois.readObject();
             UserList = UL;
         } catch (ClassNotFoundException e) {
-            //System.out.println("Did not work 1");
             UserList = new ArrayList<User>();
         }
 
         } catch (IOException e) {
-            //System.out.println("Did not work 2");
             UserList = new ArrayList<User>();
             return;
         }
@@ -110,21 +103,4 @@ public class photoalbum extends Application implements Serializable {
 		photoalbum.currentAlbum = currentAlbum;
 	}
 
-    //Launches Admin fxml
-    public void LaunchAdminStage(Stage p){
-        try {
-            Stage stage = new Stage();
-            stage.setTitle("Welcome Admin");
-            Pane myPane;
-            myPane = FXMLLoader.load(getClass().getResource("AdminView.fxml"));
-            Scene scene = new Scene(myPane);
-            stage.setScene(scene);
-            p.close();
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 }

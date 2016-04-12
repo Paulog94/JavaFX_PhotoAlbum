@@ -40,10 +40,12 @@ import photoAlbum.Model.Album;
 import photoAlbum.Model.Photo;
 import photoAlbum.Model.User;
 
+/**
+ * Controls The thumbnail View
+ */
 public class thumbViewControler {
 
 
-   // @FXML private AnchorPane ImageGalleryAnchorPane;
     @FXML private ScrollPane imageGalleryField;
     private Album currentAlbum;
 	private Photo currentPhoto;
@@ -63,9 +65,7 @@ public class thumbViewControler {
     @FXML private Button btnLogOut;
     @FXML private Button btnExit;
     @FXML private Button btnOpen;
-   // @FXML private ImageView selectedImage;
-   // @FXML private ImageView thumbImage;
-   // @FXML private TextField imageName;
+
 
     private HashMap<ImageView,Photo> IPM;
     private int selectPhotoIndex;
@@ -74,17 +74,15 @@ public class thumbViewControler {
     @FXML private TilePane tilePane = new TilePane();
     static Stage prevStage;
 
-    public thumbViewControler(){
-
-    }
     
     @FXML
     private void initialize(){
     	LoadUserList();
-      // setPhotos();
-     //  drawTiles();
     }
-    
+
+    /**
+     * Sets the Photos to be Viewed
+     */
     public void setPhotos() {
         System.out.println("Setting Photos");
        // LoadUserList();
@@ -95,7 +93,11 @@ public class thumbViewControler {
            // drawTiles();
         //}
     }
-    
+
+    /**
+     * Sets username to find Specific Album
+     * @param username
+     */
     public void setUsername(String username){
         this.userName = username;
         for(User u : savedUsers){
@@ -104,7 +106,10 @@ public class thumbViewControler {
             	currentUser = u;
         }
     }
-    
+
+    /**
+     * Draws Images on the TilePanes
+     */
     public void drawTiles(){
         System.out.println("In ImageGallery");
         imageGalleryField.setContent(tilePane);
@@ -149,6 +154,10 @@ public class thumbViewControler {
         }
     }
 
+    /**
+     * Saves Entire work
+     * @param users
+     */
     public void Save(ArrayList<User> users){
         ObjectOutputStream oos = null;
         try {
@@ -159,6 +168,9 @@ public class thumbViewControler {
         }
     }
 
+    /**
+     * Loads UserList to use
+     */
     public void LoadUserList(){
         ObjectInputStream ois;
         try {
@@ -177,10 +189,18 @@ public class thumbViewControler {
         }
     }
 
+    /**
+     * Sets Album Index to find specific Album
+     * @param a
+     */
     public void setAlbumIndex(int a){
         albumIndex = a;
     }
 
+    /**
+     * Enables User to Add Photo From your Files
+     * @param actionEvent
+     */
     public void AddPhoto(ActionEvent actionEvent) {
 
     	FileChooser fileChooser = new FileChooser();
@@ -261,21 +281,27 @@ public class thumbViewControler {
         //selectedImage = new ImageView(new Image(m));
     }
 
-    public void setPrevStage(Stage stage) {
-        this.prevStage = stage;
-    }
-
-
+    /**
+     * Exits Album and goes back to Album list
+     * @param actionEvent
+     */
     public void ExitAlbum(ActionEvent actionEvent) {
        // IPM.clear();
         LaunchUserStage();
     }
 
+    /**
+     * Logs Out and goes back to login page
+     * @param actionEvent
+     */
     public void LogOut(ActionEvent actionEvent){
        // IPM.clear();
         LaunchLoginPage();
     }
 
+    /**
+     * Launches The Album List View
+     */
     public void LaunchUserStage(){
         try {
             Stage stage = new Stage();
@@ -299,6 +325,9 @@ public class thumbViewControler {
         }
     }
 
+    /**
+     * Launches Login Page
+     */
     public void LaunchLoginPage(){
         try {
             Stage stage = new Stage();
@@ -320,6 +349,10 @@ public class thumbViewControler {
     }
 
 
+    /**
+     * Deletes Specific selected Photo
+     * @param actionEvent
+     */
     public void DeletePhoto(ActionEvent actionEvent) {
         if (selectPhotoIndex == 0 && firstP == 0 && !tilePane.getChildren().isEmpty()) {
             savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().remove(selectPhotoIndex);
@@ -335,6 +368,12 @@ public class thumbViewControler {
         }
     }
 
+    /**
+     * Launches Edit Captions for a specific Photo
+     *
+     * @param actionEvent
+     * @throws IOException Used to make sure Scene exists, it will always do
+     */
     public void EditCaptionTags(ActionEvent actionEvent) throws IOException {
         if(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -364,6 +403,11 @@ public class thumbViewControler {
 
     }
 
+    /**
+     *
+     * @param actionEvent
+     * @throws IOException
+     */
     public void MovePhoto(ActionEvent actionEvent) throws IOException {
 
         if (((selectPhotoIndex == 0 && firstP == 0) || (selectPhotoIndex != 0)) && !tilePane.getChildren().isEmpty()) {
@@ -400,6 +444,11 @@ public class thumbViewControler {
 
     }
 
+    /**
+     * Launches View Single Photo
+     * @param actionEvent
+     * @throws IOException
+     */
     public void OpenPhoto(ActionEvent actionEvent) throws IOException {
 
         if (((selectPhotoIndex == 0 && firstP == 0) || (selectPhotoIndex != 0))&& !tilePane.getChildren().isEmpty()) {

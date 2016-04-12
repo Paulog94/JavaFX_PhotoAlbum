@@ -29,6 +29,9 @@ public class AdminController {
     @FXML private Button btnLogout;
     @FXML private ListView<User> UserList = new ListView<User>();
 
+    /**
+     * Controls Admin Page
+     */
     public AdminController(){
     }
 
@@ -37,6 +40,9 @@ public class AdminController {
         setUsers();
     }
 
+    /**
+     * Sets the list of Users
+     */
     public void setUsers(){
         LoadUserList();
         ObservableList<User> ObsUserList = FXCollections.observableList(savedUsers);
@@ -59,7 +65,10 @@ public class AdminController {
         });
     }
 
-
+    /**
+     * Allows the user to add a new username
+     * @param actionEvent
+     */
     public void AddUser(ActionEvent actionEvent){
 
         if(isValidUser(txtAddUser.getText())) {
@@ -80,6 +89,10 @@ public class AdminController {
 
     }
 
+    /**
+     * Deletes selected User
+     * @param actionEvent
+     */
     public void DeleteUser(ActionEvent actionEvent){
 
         savedUsers.remove(UserList.getSelectionModel().getSelectedItem());
@@ -88,6 +101,10 @@ public class AdminController {
 
     }
 
+    /**
+     * Saves the User List to disk
+     * @param users
+     */
     public void Save(ArrayList<User> users){
 
         ObjectOutputStream oos = null;
@@ -101,6 +118,9 @@ public class AdminController {
 
     }
 
+    /**
+     * Loads the UserList to modify
+     */
     public void LoadUserList(){
 
         ObjectInputStream ois;
@@ -122,6 +142,11 @@ public class AdminController {
         }
     }
 
+    /**
+     * Checks if the there are other UserNames
+     * @param username
+     * @return
+     */
     public boolean isValidUser(String username){
 
         for(User u : savedUsers){
@@ -134,10 +159,17 @@ public class AdminController {
         return true;
     }
 
+    /**
+     * Goes back to login page
+     * @param actionEvent
+     */
     public void LogOut(ActionEvent actionEvent){
         LaunchLoginPage();
     }
 
+    /**
+     * Launches Login Page
+     */
     public void LaunchLoginPage(){
         try {
             Stage stage = new Stage();

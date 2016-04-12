@@ -20,6 +20,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * Controls User Album View
+ */
 public class albumPageController {
 
     private ArrayList<User> savedUsers;
@@ -62,6 +65,9 @@ public class albumPageController {
         setAlbums();
     }
 
+    /**
+     * Sets the Album List of the User
+     */
     public void setAlbums() {
         LoadUserList();
 
@@ -85,7 +91,10 @@ public class albumPageController {
         });
     }
 
-
+    /**
+     * Allows launcher to set a specific User
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
         for (User u : savedUsers) {
@@ -95,6 +104,10 @@ public class albumPageController {
         setAlbums();
     }
 
+    /**
+     * Allows user to add a new Album
+     * @param actionEvent
+     */
     public void addAlbum(ActionEvent actionEvent) {
 
         if (isValidAlbum(txtAddAlbum.getText())) {
@@ -113,6 +126,10 @@ public class albumPageController {
 
     }
 
+    /**
+     * Deletes selected Album
+     * @param actionEvent
+     */
     public void deleteAlbum(ActionEvent actionEvent) {
         savedUsers.get(index).getAlbumList().remove(AlbumList.getSelectionModel().getSelectedIndex());
         Save(savedUsers);
@@ -120,9 +137,17 @@ public class albumPageController {
 
     }
 
+    /**
+     * Searches Photo
+     * @param actionEvent
+     */
     public void SearchPhoto(ActionEvent actionEvent) {
     }
 
+    /**
+     * Saves project
+     * @param users
+     */
     public void Save(ArrayList<User> users) {
 
         ObjectOutputStream oos = null;
@@ -136,6 +161,9 @@ public class albumPageController {
 
     }
 
+    /**
+     * Loads Project
+     */
     public void LoadUserList() {
 
         ObjectInputStream ois;
@@ -157,6 +185,10 @@ public class albumPageController {
         }
     }
 
+    /**
+     * Allows User to edit album name
+     * @param actionEvent
+     */
     public void editAlbum(ActionEvent actionEvent) {
         if (!AlbumList.getSelectionModel().isEmpty() && isValidAlbum(txtEdit.getText())) {
             AlbumList.getSelectionModel().getSelectedItem().setName(txtEdit.getText());
@@ -172,10 +204,20 @@ public class albumPageController {
         }
     }
 
+    /**
+     * keeps track of prev stage
+     * @param stage
+     */
     public void setPrevStage(Stage stage) {
         this.prevStage = stage;
     }
 
+    /**
+     * Launches Photo Album image gallery page
+     * to the selected album
+     *
+     * @param actionEvent
+     */
     public void ViewAlbum(ActionEvent actionEvent) {
         if (AlbumList.getSelectionModel().isEmpty()) {
             return;
@@ -208,6 +250,10 @@ public class albumPageController {
         }
     }
 
+    /**
+     * Selects Albums
+     * @param event
+     */
     public void SelectedAlbum(Event event) {
         if (AlbumList.getSelectionModel().isEmpty()) {
             return;
@@ -218,6 +264,11 @@ public class albumPageController {
         setLabels();
     }
 
+    /**
+     * Validates potential Album names
+     * @param album
+     * @return
+     */
     public boolean isValidAlbum(String album) {
 
         for (Album a : savedUsers.get(index).getAlbumList()) {
@@ -230,6 +281,9 @@ public class albumPageController {
         return true;
     }
 
+    /**
+     * Sets Albums Details
+     */
     public void setLabels(){
         String name = AlbumList.getSelectionModel().getSelectedItem().getName();
         int NumOfPhotos = AlbumList.getSelectionModel().getSelectedItem().getPhotoList().size();

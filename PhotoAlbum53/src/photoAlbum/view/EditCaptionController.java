@@ -15,6 +15,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
+ * Used to control Captions
  * Created by Paulo1 on 4/11/2016.
  */
 public class EditCaptionController {
@@ -39,6 +40,9 @@ public class EditCaptionController {
         LoadUserList();
     }
 
+    /**
+     * Sets Tag List
+     */
     public void setTags() {
         lblCaption.setText("Caption: "
                 +savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getCaption());
@@ -67,10 +71,23 @@ public class EditCaptionController {
         });
     }
 
+    /**
+     * Creates a new tag
+     * @param actionEvent
+     */
     public void CreateTag(ActionEvent actionEvent) {
         if(!txtType.getText().isEmpty() && !txtValue.getText().isEmpty()){
             tag newTag = new tag(txtType.getText(),txtValue.getText());
-            savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getTags().add(newTag);
+            if(!savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getTags().contains(newTag)) {
+                savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getTags().add(newTag);
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Cannot add the same tag");
+                alert.setContentText("Tag cannot already exist.");
+                alert.showAndWait();
+            }
             setTags();
         }
         else{
@@ -82,6 +99,10 @@ public class EditCaptionController {
         }
     }
 
+    /**
+     * Deletes selected Tag
+     * @param actionEvent
+     */
     public void DeleteTag(ActionEvent actionEvent) {
         if(TagView.getSelectionModel().isEmpty()){
             return;
@@ -92,6 +113,10 @@ public class EditCaptionController {
         setTags();
     }
 
+    /**
+     * Sets Photo Caption
+     * @param actionEvent
+     */
     public void setCaption(ActionEvent actionEvent) {
         savedUsers.get(userIndex).getAlbumList().get(albumIndex).
                 getPhotoList().get(pIndex).editCaption(txtCaption.getText());
@@ -100,6 +125,10 @@ public class EditCaptionController {
                 +savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(pIndex).getCaption());
     }
 
+    /**
+     * Sets Username to find photo
+     * @param username
+     */
     public void setUsername(String username){
         this.userName = username;
 
@@ -108,13 +137,27 @@ public class EditCaptionController {
                 userIndex = savedUsers.indexOf(u);
         }
     }
+
+    /**
+     * Sets Album index to find Album
+     * @param a
+     */
     public void setAlbumIndex(int a){
         albumIndex = a;
     }
+
+    /**
+     * sets photo index to find photo
+     * @param p
+     */
     public void setPhotoIndex(int p){
         this.pIndex = p;
     }
 
+    /**
+     * Saves Changes
+     * @param users
+     */
     public void Save(ArrayList<User> users){
         ObjectOutputStream oos = null;
         try {
@@ -124,6 +167,10 @@ public class EditCaptionController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Loads Specific User List
+     */
     public void LoadUserList(){
         ObjectInputStream ois;
         try {
@@ -142,6 +189,10 @@ public class EditCaptionController {
         }
     }
 
+    /**
+     * Handles when Save button is clicked
+     * @param actionEvent
+     */
     public void save(ActionEvent actionEvent) {
         Save(savedUsers);
         Stage stage = (Stage) btnSave.getScene().getWindow();

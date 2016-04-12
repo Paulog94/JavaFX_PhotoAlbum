@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Used to View One specific Photo
  * Created by Paulo1 on 4/11/2016.
  */
 public class PhotoViewController {
@@ -24,7 +25,10 @@ public class PhotoViewController {
     @FXML private Label lblCaption;
     @FXML private Label lblDate;
 
-
+    /**
+     * Sets specific Photo to View
+     * @param p
+     */
     public void setPhoto(Photo p){
 
         lblCaption.setText(p.getCaption());

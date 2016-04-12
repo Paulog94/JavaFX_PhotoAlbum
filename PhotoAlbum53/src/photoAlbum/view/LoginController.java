@@ -41,7 +41,11 @@ public class LoginController {
         this.prevStage = stage;
     }
 
-    //Checks UserInput for a valid Username or Admin
+    /**
+     * Launches Either Admin or User Page
+     * Based on input
+     * @param actionEvent
+     */
     public void Login(ActionEvent actionEvent){
 
         btnLogin.getOnMouseClicked();
@@ -59,7 +63,9 @@ public class LoginController {
 
     }
 
-    //Launches Admin fxml
+    /**
+     * Launches Admin Page
+     */
     public void LaunchAdminStage(){
         try {
             Stage stage = new Stage();
@@ -79,7 +85,9 @@ public class LoginController {
 
     }
 
-    //Here is where we launch The User fxml
+    /**
+     * Launches User Stage where you can view Albums
+     */
     public void LaunchUserStage(){
         try {
             Stage stage = new Stage();
@@ -103,7 +111,9 @@ public class LoginController {
         }
     }
 
-    //Loads Users from the Binary file
+    /**
+     * Loads the valid User Names
+     */
     public void LoadUserList(){
 
         ObjectInputStream ois;
@@ -125,7 +135,11 @@ public class LoginController {
         }
     }
 
-    //Checks if Username is Valid
+    /**
+     * Checks if the Username input is Valid
+     * @param name
+     * @return
+     */
     public boolean validUser(String name){
 
         for(User u: savedUsers){
