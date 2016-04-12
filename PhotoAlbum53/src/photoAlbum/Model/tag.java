@@ -19,22 +19,13 @@ public class tag implements Serializable {
      * @param value tag value (ex: New York)
      */
     public tag(String type, String value){
-        if(isValidTag(type)) {
             this.type = type.toLowerCase();
             this.value = value;
-        }
     }
 
     public String getType(){return type;}
     public String getValue(){return value;}
 
-    public boolean isValidTag(String type){
-
-        if(type.toLowerCase().equals("location")||type.toLowerCase().equals("person"))
-        return true;
-
-        return false;
-    }
 
     public boolean equals(tag t){
 

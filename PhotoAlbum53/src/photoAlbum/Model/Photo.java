@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
+ * Used For Storing Photo urls
+ * Caption
+ * and Tags
  * Created by Paulo1 on 3/29/2016.
  */
 public class Photo implements Serializable {
