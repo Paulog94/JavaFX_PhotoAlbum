@@ -321,7 +321,7 @@ public class thumbViewControler {
 
 
     public void DeletePhoto(ActionEvent actionEvent) {
-        if (selectPhotoIndex == 0 && firstP == 0) {
+        if (selectPhotoIndex == 0 && firstP == 0 && !tilePane.getChildren().isEmpty()) {
             savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().remove(selectPhotoIndex);
             Save(savedUsers);
             tilePane.getChildren().remove(selectPhotoIndex);
@@ -366,7 +366,7 @@ public class thumbViewControler {
 
     public void MovePhoto(ActionEvent actionEvent) throws IOException {
 
-        if ((selectPhotoIndex == 0 && firstP == 0) || (selectPhotoIndex != 0)) {
+        if (((selectPhotoIndex == 0 && firstP == 0) || (selectPhotoIndex != 0)) && !tilePane.getChildren().isEmpty()) {
 
             Stage stage = new Stage();
             stage.setTitle("Welcome "+userName+" Please Move Photo");
@@ -402,7 +402,7 @@ public class thumbViewControler {
 
     public void OpenPhoto(ActionEvent actionEvent) throws IOException {
 
-        if ((selectPhotoIndex == 0 && firstP == 0) || (selectPhotoIndex != 0)) {
+        if (((selectPhotoIndex == 0 && firstP == 0) || (selectPhotoIndex != 0))&& !tilePane.getChildren().isEmpty()) {
 
             Stage stage = new Stage();
             stage.setTitle("Welcome " + userName + " Please Move Photo");
