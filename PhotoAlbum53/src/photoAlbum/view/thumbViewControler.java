@@ -399,4 +399,24 @@ public class thumbViewControler {
         }
 
     }
+
+    public void OpenPhoto(ActionEvent actionEvent) throws IOException {
+
+        if ((selectPhotoIndex == 0 && firstP == 0) || (selectPhotoIndex != 0)) {
+
+            Stage stage = new Stage();
+            stage.setTitle("Welcome " + userName + " Please Move Photo");
+            SplitPane myPane;
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("PhotoView.fxml"));
+            myPane = (SplitPane) myLoader.load();
+            PhotoViewController controller = (PhotoViewController) myLoader.getController();
+            controller.setPhoto(savedUsers.get(userIndex).getAlbumList().get(albumIndex).getPhotoList().get(selectPhotoIndex));
+
+            Scene scene = new Scene(myPane);
+            stage.setScene(scene);
+
+            stage.showAndWait();
+            stage.close();
+        }
+    }
 }
