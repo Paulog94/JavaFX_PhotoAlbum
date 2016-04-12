@@ -22,6 +22,7 @@ public class Photo implements Serializable {
         tags = new ArrayList<tag>();
         date = Calendar.getInstance();
         date.add(Calendar.DATE,1);
+        date.set(Calendar.MILLISECOND,0);
     }
 
     public Photo(String url){
@@ -30,19 +31,23 @@ public class Photo implements Serializable {
         tags = new ArrayList<tag>();
         date = Calendar.getInstance();
         date.add(Calendar.DATE, 1);
+        date.set(Calendar.MILLISECOND,0);
     }
 
     public void addTag(tag t){
         tags.add(t);
         date.add(Calendar.DATE, 1);
+        date.set(Calendar.MILLISECOND,0);
     }
     public void deleteTag(tag t){
         tags.remove(t);
         date.add(Calendar.DATE, 1);
+        date.set(Calendar.MILLISECOND,0);
     }
     public void editCaption(String caption){
         this.caption = caption;
         date.add(Calendar.DATE, 1);
+        date.set(Calendar.MILLISECOND,0);
     }
     public String getCaption(){return caption;}
     public Image getImage(){return new Image(url);}
